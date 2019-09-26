@@ -1,5 +1,6 @@
 # StreaMOOR
 ![Twitchlul](https://raw.githubusercontent.com/Mita57/learning_stuff_myself/master/Java/Coolthing/src/twitchded.png)
+
 ##Intoduction
 Despite all the efforts from companies such as youtube and mixer, twitch.tv's streaming platform dominance still seems unstoppable, which is really strange comsidering all the scandals regarding banning people for doing comparatively nothing much. 
 This has to end one time or another, so this is the most ambitious project to do that yet. 
