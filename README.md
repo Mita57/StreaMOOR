@@ -17,7 +17,7 @@ All that will be streamed on this platform shall be of high quality, interesting
 
 # In Moor we trust
 Our Philosophy is based on ideas of the greatest creator of all times - Pavel Clementyevich Moor, who created such things as Universe, Python and alcohol. This things are also three wales of our code 
-   <li> * Universe is mostly dark and empty, so are our repos</li>
-   <li> * We follow python's zen, when we are not drunk</li>
-   <li> * We are always drunk</li>
+   <li> Universe is mostly dark and empty, so are our repos</li>
+   <li> We follow python's zen, when we are not drunk</li>
+   <li> We are always drunk</li>
 
