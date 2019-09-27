@@ -16,7 +16,7 @@ All that will be streamed on this platform shall be of high quality, interesting
 ![stuff](https://raw.githubusercontent.com/Mita57/learning_stuff_myself/master/Java/Coolthing/src/thingsToDo.jpg)
 
 # In Moor we trust
-Our Philosophy is based on ideas of the greatest creator of all times - Pavel Clementyevich Moor, who created such things as Universe, Python and alcohol. This things are also three wales of our code
-    => Universe is mostly dark and empty, so are our repos
-    => We follow python's zen, when we are not drunk
-    => We are always drunk
+Our Philosophy is based on ideas of the greatest creator of all times - Pavel Clementyevich Moor, who created such things as Universe, Python and alcohol. This things are also three wales of our code \n
+    * Universe is mostly dark and empty, so are our repos
+    * We follow python's zen, when we are not drunk
+    * We are always drunk
