@@ -3,7 +3,7 @@
 
 ## Intoduction
 
-Despite all the efforts from companies such as youtube and mixer, twitch.tv's streaming platform dominance still seems unstoppable, which is really strange comsidering all the scandals regarding banning people for doing comparatively nothing much. 
+Despite all the efforts from companies such as youtube and mixer, twitch.tv's streaming platform dominance still seems unstoppable, which is really strange considering all the scandals regarding banning people for doing comparatively nothing much. 
 This has to end one time or another, so this is the most ambitious project to do that yet. 
 
 ![Stats](https://cdn.neow.in/news/images/uploaded/2018/10/1540496625_1_b305kffnjopv0fx1e8hqsq.jpg)
