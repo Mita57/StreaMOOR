@@ -1,37 +1,22 @@
-import datetime
+class abstract_class_constuctor_called(Exception):
+    print('This is an abstract class you pillock')
 
-class abstract_class_init_exception(Exception):
-    print('This class is abstact you pillock')
+class hub:
+    def __init__(self, name, rating)
+    raise abstract_class_constuctor_called
 
-#abstract af
-class user:
-    nickname
-    join_date
-    password
-    banned
-    def __init__(self):
-        raise abstract_class_init_exception
+class gaming_hub(hub):
+    def __init__(self, name, rating, krunker_online, flappyMoor_online):
+        self.name = name
+        self.rating = rating
+        self.krunker_online = krunker_online
+        self.flappyMoor_online = flappyMoor_online
+    
+    def promote_krunker:
+        print('Everyone play krunker.io!')
 
-    def login(self, password, nickname):
-        pass
+    def promote_flappyMoor:
+        print('Everyone play flappyMoor!')
 
-    def logout(self, password, nickname):
-        pass
+    
 
-
-
-class moderator(user):
-    def __init__(self, nickname, join_date, password, service_count):
-        self.nickname = nickname
-        self.join_date = join_date
-        self.service_count = service_count
-        self.password = password
-
-    def delete_chat_message(self):
-        pass
-
-    def ban (self, nickname):
-        regular_users[nickname].banned = True
-
-    def unban(self, nickname):
-        regular_users[nickname].banned = False;
