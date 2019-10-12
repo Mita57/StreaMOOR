@@ -48,7 +48,7 @@ class BasicModel(SQLModel):
 class User(BasicModel):
     _FIELDS_MAPPING = {
         'nickname': str,                 #id
-        'join_date': datetime,
+        'join_date':datetime,
         'password': str,
         'email': str,
         'birth_date': datetime,
@@ -61,16 +61,18 @@ class User(BasicModel):
     def logout(self, password, nickname):
         pass
     
-    def __init__(self, nickname, join_date, password):
-        self.nickname = nickname
-        self.join_date = join_date
-        self.password = password
-        self.status = type(self).__name__
+    def __init__(self, nickname, join_date, password, email, birth_date):
+        self._FIELDS_MAPPING['nickname'] = nickname
+        self._FIELDS_MAPPING['join_date'] = join_date
+        self._FIELDS_MAPPING['password'] = password
+        self._FIELDS_MAPPING['status'] = type(self).__name__
+        self._FIELDS_MAPPING['email'] = email
+        self._FIELDS_MAPPING['birth_date'] = birth_date
 
 
 class Moderator(User):
-    def __init__(self, nickname, join_date, password, service_count):
-        super().__init__(nickname, join_date, password)
+    def __init__(self, nickname, join_date, password, service_count, email, birth_date):
+        super().__init__(nickname, join_date, password, email, birth_date)
         self.service_count = service_count
 
     @staticmethod
@@ -88,4 +90,7 @@ class Moderator(User):
         pass
 
 
-users = {}
+user1 = User(nickname="meme-poster", join_date=datetime.datetime(2019, 5, 17), password="mamkuvkinovodil", email= 'mamkatvoya@gmail.com', birth_date=datetime.datetime(2000, 18, 4))
+user2 = Moderator(nickname="meme-poster", join_date=datetime.datetime(2019, 5, 17), password="mamkuvkinovodil", email= 'mamkatvoya@gmail.com', birth_date=datetime.datetime(2000, 18, 4), service_count=69)
+users = [user1, user2]
+
