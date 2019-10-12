@@ -47,12 +47,13 @@ class BasicModel(SQLModel):
 
 class User(BasicModel):
     _FIELDS_MAPPING = {
-        'nickname': str,                 #id
-        'join_date':datetime,
+        'nickname': str,
+        'join_date': datetime,
         'password': str,
         'email': str,
         'birth_date': datetime,
-        'status': str
+        'status': str,
+        'banned': bool
     }
 
     def login(self, password, nickname):
@@ -65,9 +66,10 @@ class User(BasicModel):
         self._FIELDS_MAPPING['nickname'] = nickname
         self._FIELDS_MAPPING['join_date'] = join_date
         self._FIELDS_MAPPING['password'] = password
-        self._FIELDS_MAPPING['status'] = type(self).__name__
         self._FIELDS_MAPPING['email'] = email
+        self._FIELDS_MAPPING['status'] = type(self).__name__
         self._FIELDS_MAPPING['birth_date'] = birth_date
+        self._FIELDS_MAPPING['banned'] = False
 
 
 class Moderator(User):
@@ -93,4 +95,13 @@ class Moderator(User):
 user1 = User(nickname="meme-poster", join_date=datetime.datetime(2019, 5, 17), password="mamkuvkinovodil", email= 'mamkatvoya@gmail.com', birth_date=datetime.datetime(2000, 18, 4))
 user2 = Moderator(nickname="meme-poster", join_date=datetime.datetime(2019, 5, 17), password="mamkuvkinovodil", email= 'mamkatvoya@gmail.com', birth_date=datetime.datetime(2000, 18, 4), service_count=69)
 users = [user1, user2]
+
+
+SQLModel.query("""CREATE TABLE users (nickname VARCHAR PRIMARY KEY, join_date DATE, password VARCHAR, email VARCHAR, status VARCHAR, birth_date DATE, banned bit )""")
+
+for X in users:
+    SQLModel.query(
+        """
+            INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?), (X.__getattr__('nickname'), X.__getattr__('join_date'),X.__getattr__('password'),X.__getattr__('email'),X.__getattr__('status'),X.__getattr__('birtdate'),X.__getattr__('banned'))
+        """)
 
