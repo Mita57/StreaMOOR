@@ -6,7 +6,24 @@ class AbstractClassError(Exception):
     print('Dis is an abstract class u dummy')
 
 
-class BasicModel:
+class SQLModel:
+    _DATABASE = None
+    _TABLE = None
+
+    @classmethod
+    def _connect(cls):
+        return sqlite3.connect(cls._DATABASE)
+
+    @classmethod
+    def query(cls, query):
+        conn = cls._connect()
+        cur = conn.cursor()
+        cur.execute(query)
+        conn.commit()
+        conn.close()
+
+
+class BasicModel(SQLModel):
     _FIELDS_MAPPING = {}
 
     def __getattr__(self, item):
@@ -47,7 +64,7 @@ class User(BasicModel):
         self.nickname = nickname
         self.join_date = join_date
         self.password = password
-        self.status = self.__class__.__name__
+        self.status = type(self).__name__
 
 
 class Moderator(User):
@@ -71,4 +88,7 @@ class Moderator(User):
 
 
 
-    
+
+
+users = {}
+users
