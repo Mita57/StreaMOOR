@@ -1,8 +1,29 @@
 import datetime
+import sqlite3
 
 
-#abstract af
-class user:
+class BasicModel:
+    _FIELDS_MAPPING = {}
+
+    def __getattr__(self, item):
+        if item in self._FIELDS_MAPPING.keys():
+            return self._FIELDS_MAPPING[item]
+        raise AttributeError
+
+    def __setattr__(self, key, value):
+        if key in self._FIELDS_MAPPING.keys():
+            self._FIELDS_MAPPING[key] = value
+        raise AttributeError
+
+
+class User(BasicModel):
+    _FIELDS_MAPPING = {
+        'nickname': str,
+        'join_date': datetime,
+        'password': str,
+        'email': str,
+        'birth_date': datetime,
+    }
 
     def login(self, password, nickname):
         pass
@@ -16,8 +37,7 @@ class user:
         self.password = password
 
 
-
-class moderator(user):
+class Moderator(user):
     def __init__(self, nickname, join_date, password, service_count):
         self.nickname = nickname
         self.join_date = join_date
@@ -27,9 +47,11 @@ class moderator(user):
     def delete_chat_message(self):
         pass
 
-    def ban (self, nickname):
+    @staticmethod
+    def ban(self, nickname):
         users[nickname].banned = True
 
+    @staticmethod
     def unban(self, nickname):
         users[nickname].banned = False
 
