@@ -2,6 +2,10 @@ import datetime
 import sqlite3
 
 
+class AbstractClassError(Exception):
+    print('Dis is an abstract class u dummy')
+
+
 class BasicModel:
     _FIELDS_MAPPING = {}
 
@@ -15,6 +19,13 @@ class BasicModel:
             self._FIELDS_MAPPING[key] = value
         raise AttributeError
 
+    def __init__(self):
+        raise AbstractClassError
+
+    def print_info(self):
+        for value in self._FIELDS_MAPPING:
+            print(value + " = " + self._FIELDS_MAPPING[value])
+
 
 class User(BasicModel):
     _FIELDS_MAPPING = {
@@ -23,6 +34,7 @@ class User(BasicModel):
         'password': str,
         'email': str,
         'birth_date': datetime,
+        'status': str
     }
 
     def login(self, password, nickname):
@@ -35,24 +47,20 @@ class User(BasicModel):
         self.nickname = nickname
         self.join_date = join_date
         self.password = password
+        self.status = self.__class__.__name__
 
 
-class Moderator(user):
+class Moderator(User):
     def __init__(self, nickname, join_date, password, service_count):
-        self.nickname = nickname
-        self.join_date = join_date
+        super().__init__(nickname, join_date, password)
         self.service_count = service_count
-        self.password = password
-
-    def delete_chat_message(self):
-        pass
 
     @staticmethod
-    def ban(self, nickname):
+    def ban(nickname):
         users[nickname].banned = True
 
     @staticmethod
-    def unban(self, nickname):
+    def unban(nickname):
         users[nickname].banned = False
 
     def set_chat_timeout(self, nickname, seconds):
@@ -60,5 +68,7 @@ class Moderator(user):
 
     def ban_channel(self, nickname):
         pass
+
+
 
     
