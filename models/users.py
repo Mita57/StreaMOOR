@@ -25,6 +25,7 @@ class SQLModel:
 
 class BasicModel(SQLModel):
     _FIELDS_MAPPING = {}
+    _DATABASE = 'users.db'
 
     def __getattr__(self, item):
         if item in self._FIELDS_MAPPING.keys():
@@ -46,7 +47,7 @@ class BasicModel(SQLModel):
 
 class User(BasicModel):
     _FIELDS_MAPPING = {
-        'nickname': str,
+        'nickname': str,                 #id
         'join_date': datetime,
         'password': str,
         'email': str,
@@ -87,8 +88,4 @@ class Moderator(User):
         pass
 
 
-
-
-
 users = {}
-users
