@@ -10,6 +10,9 @@ class SQLModel:
     _DATABASE = None
     _TABLE = None
 
+    def __init__(self):
+        raise AbstractClassError
+
     @classmethod
     def _connect(cls):
         return sqlite3.connect(cls._DATABASE)
@@ -23,10 +26,9 @@ class SQLModel:
         conn.close()
 
     @classmethod
-    def get_by_id(cls, pk):
+    def get_by_pk(cls, pk):
         conn = cls._connect()
         cur = conn.cursor()
-
         cur.execute(
             """
                 SELECT *
@@ -35,7 +37,12 @@ class SQLModel:
             """,
             {'table': cls._TABLE, 'pk': pk}
         )
-        return pk
+        result = {}
+        record = cur.fetchone()
+        for key, val in enumerate(cur.description):
+            result[val] = record[key]
+        conn.close()
+        return result
 
 
 class BasicModel(SQLModel):
