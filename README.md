@@ -22,7 +22,7 @@ Our Philosophy is based on ideas of the greatest creator of all times - Pavel Cl
    <li> We are always drunk</li>
    
    
-##The creators of this masterpiece:
+## The creators of this masterpiece:
 <li> Timofey Myachikov
 <li> Sergo Kosterin
 <li> Igor Krupkin
