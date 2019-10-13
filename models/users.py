@@ -22,6 +22,21 @@ class SQLModel:
         conn.commit()
         conn.close()
 
+    @classmethod
+    def get_by_id(cls, pk):
+        conn = cls._connect()
+        cur = conn.cursor()
+
+        cur.execute(
+            """
+                SELECT *
+                FROM :table
+                WHERE id = :pk
+            """,
+            {'table': cls._TABLE, 'pk': pk}
+        )
+        return pk
+
 
 class BasicModel(SQLModel):
     _FIELDS_MAPPING = {}
@@ -93,7 +108,7 @@ class Moderator(User):
 
 
 user1 = User(nickname="meme-poster", join_date=datetime.datetime(2019, 5, 17), password="mamkuvkinovodil", email= 'mamkatvoya@gmail.com', birth_date=datetime.datetime(2000, 18, 4))
-user2 = Moderator(nickname="meme-poster", join_date=datetime.datetime(2019, 5, 17), password="mamkuvkinovodil", email= 'mamkatvoya@gmail.com', birth_date=datetime.datetime(2000, 18, 4), service_count=69)
+user2 = Moderator(nickname="Vitas", join_date=datetime.datetime(2019, 5, 17), password="7element", email= 'AAAAAAAAA@gmail.com', birth_date=datetime.datetime(1979, 13, 4), service_count=69)
 users = [user1, user2]
 
 
