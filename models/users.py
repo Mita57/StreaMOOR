@@ -67,11 +67,12 @@ class BasicModel(SQLModel):
 
     def print_info(self):
         for value in self._FIELDS_MAPPING:
-            print(value + " = " + self._FIELDS_MAPPING[value])
+            print(str(value) + " = " + str(self._FIELDS_MAPPING[value]))
 
 
 class User(BasicModel):
     _FIELDS_MAPPING = {
+        'id': int,
         'nickname': str,
         'join_date': datetime,
         'password': str,
@@ -87,7 +88,8 @@ class User(BasicModel):
     def logout(self, password, nickname):
         pass
 
-    def __init__(self, nickname, join_date, password, email, birth_date):
+    def __init__(self, user_id, nickname, join_date, password, email, birth_date):
+        self._FIELDS_MAPPING['id'] = user_id
         self._FIELDS_MAPPING['nickname'] = nickname
         self._FIELDS_MAPPING['join_date'] = join_date
         self._FIELDS_MAPPING['password'] = password
@@ -98,8 +100,8 @@ class User(BasicModel):
 
 
 class Moderator(User):
-    def __init__(self, nickname, join_date, password, service_count, email, birth_date):
-        super().__init__(nickname, join_date, password, email, birth_date)
+    def __init__(self, user_id,  nickname, join_date, password, service_count, email, birth_date):
+        super().__init__(user_id, nickname, join_date, password, email, birth_date)
         self._FIELDS_MAPPING['service_count'] = service_count
 
     @staticmethod
@@ -117,17 +119,21 @@ class Moderator(User):
         pass
 
 
-user1 = User(nickname="meme-poster", join_date=datetime.datetime(2019, 5, 17), password="mamkuvkinovodil", email= 'mamkatvoya@gmail.com', birth_date=datetime.datetime(2000, 4, 18))
-user2 = Moderator(nickname="Vitas", join_date=datetime.datetime(2019, 5, 17), password="7element", email= 'AAAAAAAAA@gmail.com', birth_date=datetime.datetime(1979, 4, 13), service_count=69)
+user1 = User(user_id=0, nickname="meme-poster", join_date=datetime.datetime(2019, 5, 17), password="mamkuvkinovodil",
+             email='mamkatvoya@gmail.com', birth_date=datetime.datetime(2000, 4, 18))
+user2 = Moderator(user_id=1, nickname="Vitas", join_date=datetime.datetime(2019, 5, 17), password="7element",
+                  email='AAAAAAAAA@gmail.com', birth_date=datetime.datetime(1979, 4, 13), service_count=69)
 users = [user1, user2]
+user1.print_info()
+user2.print_info()
 
 try:
-    User.query("""CREATE TABLE users (nickname VARCHAR(20) PRIMARY KEY, join_date DATE, password VARCHAR(20), email VARCHAR(30), status VARCHAR(10), birth_date DATE, banned bit )""")
+    User.query("""CREATE TABLE users (id INTEGER, nickname VARCHAR(20), join_date DATE, password VARCHAR(20),
+     email VARCHAR(30), status VARCHAR(10), birth_date DATE, banned bit )""")
 except sqlite3.OperationalError:
     pass
-
 for X in users:
     User.query(
         """
-            INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?) """, (X['nickname'], X['join_date'],X['password'],X['email'],X['status'],X['birth_date'],X['banned']))
+            INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?, ?) """, (X.__getattr__('id'), X.__getattr__('nickname'), X.__getattr__('join_date'), X.__getattr__('password'), X.__getattr__('email'), X.__getattr__('status'), X.__getattr__('birth_date'), X.__getattr__('banned')))
 
