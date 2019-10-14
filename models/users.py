@@ -3,7 +3,7 @@ import sqlite3
 
 
 class AbstractClassError(Exception):
-    print('Dis is an abstract class u dummy')
+    pass
 
 
 class SQLModel:
@@ -83,7 +83,7 @@ class User(BasicModel):
 
     def logout(self, password, nickname):
         pass
-    
+
     def __init__(self, nickname, join_date, password, email, birth_date):
         self._FIELDS_MAPPING['nickname'] = nickname
         self._FIELDS_MAPPING['join_date'] = join_date
@@ -97,7 +97,7 @@ class User(BasicModel):
 class Moderator(User):
     def __init__(self, nickname, join_date, password, service_count, email, birth_date):
         super().__init__(nickname, join_date, password, email, birth_date)
-        self.service_count = service_count
+        self._FIELDS_MAPPING['service_count'] = service_count
 
     @staticmethod
     def ban(nickname):
@@ -114,8 +114,8 @@ class Moderator(User):
         pass
 
 
-user1 = User(nickname="meme-poster", join_date=datetime.datetime(2019, 5, 17), password="mamkuvkinovodil", email= 'mamkatvoya@gmail.com', birth_date=datetime.datetime(2000, 18, 4))
-user2 = Moderator(nickname="Vitas", join_date=datetime.datetime(2019, 5, 17), password="7element", email= 'AAAAAAAAA@gmail.com', birth_date=datetime.datetime(1979, 13, 4), service_count=69)
+user1 = User(nickname="meme-poster", join_date=datetime.datetime(2019, 5, 17), password="mamkuvkinovodil", email= 'mamkatvoya@gmail.com', birth_date=datetime.datetime(2000, 4, 18))
+user2 = Moderator(nickname="Vitas", join_date=datetime.datetime(2019, 5, 17), password="7element", email= 'AAAAAAAAA@gmail.com', birth_date=datetime.datetime(1979, 4, 13), service_count=69)
 users = [user1, user2]
 
 
@@ -124,6 +124,5 @@ SQLModel.query("""CREATE TABLE users (nickname VARCHAR PRIMARY KEY, join_date DA
 for X in users:
     SQLModel.query(
         """
-            INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?), (X.__getattr__('nickname'), X.__getattr__('join_date'),X.__getattr__('password'),X.__getattr__('email'),X.__getattr__('status'),X.__getattr__('birtdate'),X.__getattr__('banned'))
-        """)
+            INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?) """, (X['nickname'], X['join_date'],X['password'],X['email'],X['status'],X['birth_date'],X['banned']))
 
