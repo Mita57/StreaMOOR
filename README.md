@@ -26,4 +26,4 @@ Our Philosophy is based on ideas of the greatest creator of all times - Pavel Cl
 <li> Timofey Myachikov
 <li> Sergo Kosterin
 <li> Igor Krupkin
-<li> Nasya Ekimova
+<li> Nastya Ekimova
