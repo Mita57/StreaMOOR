@@ -18,10 +18,13 @@ class SQLModel:
         return sqlite3.connect(cls._DATABASE)
 
     @classmethod
-    def query(cls, query):
+    def query(cls, query, attrs=None):
         conn = cls._connect()
         cur = conn.cursor()
-        cur.execute(query)
+        if attrs:
+            cur.execute(query, attrs)
+        else:
+            cur.execute(query)
         conn.commit()
         conn.close()
 
@@ -118,11 +121,13 @@ user1 = User(nickname="meme-poster", join_date=datetime.datetime(2019, 5, 17), p
 user2 = Moderator(nickname="Vitas", join_date=datetime.datetime(2019, 5, 17), password="7element", email= 'AAAAAAAAA@gmail.com', birth_date=datetime.datetime(1979, 4, 13), service_count=69)
 users = [user1, user2]
 
-
-SQLModel.query("""CREATE TABLE users (nickname VARCHAR PRIMARY KEY, join_date DATE, password VARCHAR, email VARCHAR, status VARCHAR, birth_date DATE, banned bit )""")
+try:
+    User.query("""CREATE TABLE users (nickname VARCHAR(20) PRIMARY KEY, join_date DATE, password VARCHAR(20), email VARCHAR(30), status VARCHAR(10), birth_date DATE, banned bit )""")
+except sqlite3.OperationalError:
+    pass
 
 for X in users:
-    SQLModel.query(
+    User.query(
         """
             INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?) """, (X['nickname'], X['join_date'],X['password'],X['email'],X['status'],X['birth_date'],X['banned']))
 
