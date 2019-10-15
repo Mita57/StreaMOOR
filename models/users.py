@@ -49,21 +49,16 @@ class SQLModel:
 
 
 class BasicModel(SQLModel):
-    _FIELDS_MAPPING = {}
-    _DATABASE = 'users.db'
-    _TABLE = 'users'
-
-    __dict__ = {}
 
     def __getattr__(self, item):
         if item in self._FIELDS_MAPPING.keys():
             return self.__dict__[item]
-        raise AttributeError
+        # raise AttributeError
 
     def __setattr__(self, key, value):
         if key in self._FIELDS_MAPPING.keys():
             self.__dict__[key] = value
-        raise AttributeError
+        # raise AttributeError
 
     def __init__(self):
         raise AbstractClassError
@@ -74,6 +69,17 @@ class BasicModel(SQLModel):
 
 
 class User(BasicModel):
+    _DATABASE = 'users.db'
+    _TABLE = 'users'
+    id: int
+    nickname: str
+    join_date: datetime
+    password: str
+    email: str
+    birth_date: datetime
+    status: str
+    banned: bool
+
     _FIELDS_MAPPING = {
         'id': int,
         'nickname': str,
@@ -92,20 +98,22 @@ class User(BasicModel):
         pass
 
     def __init__(self, user_id, nickname, join_date, password, email, birth_date):
-        self.__dict__['id'] = user_id
-        self.__dict__['nickname'] = nickname
-        self.__dict__['join_date'] = join_date
-        self.__dict__['password'] = password
-        self.__dict__['email'] = email
-        self.__dict__['status'] = type(self).__name__
-        self.__dict__['birth_date'] = birth_date
-        self.__dict__['banned'] = False
+        self.id = user_id
+        self.nickname = nickname
+        self.join_date = join_date
+        self.password = password
+        self.email = email
+        self.status = type(self).__name__
+        self.birth_date = birth_date
+        self.banned = False
 
 
 class Moderator(User):
+    service_count: int
+
     def __init__(self, user_id,  nickname, join_date, password, service_count, email, birth_date):
         super().__init__(user_id, nickname, join_date, password, email, birth_date)
-        self.__dict__['service_count'] = service_count
+        self.service_count = service_count
 
     @staticmethod
     def ban(nickname):
