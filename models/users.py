@@ -51,15 +51,18 @@ class SQLModel:
 class BasicModel(SQLModel):
     _FIELDS_MAPPING = {}
     _DATABASE = 'users.db'
+    _TABLE = 'users'
+
+    __dict__ = {}
 
     def __getattr__(self, item):
         if item in self._FIELDS_MAPPING.keys():
-            return self._FIELDS_MAPPING[item]
+            return self.__dict__[item]
         raise AttributeError
 
     def __setattr__(self, key, value):
         if key in self._FIELDS_MAPPING.keys():
-            self._FIELDS_MAPPING[key] = value
+            self.__dict__[key] = value
         raise AttributeError
 
     def __init__(self):
@@ -67,7 +70,7 @@ class BasicModel(SQLModel):
 
     def print_info(self):
         for value in self._FIELDS_MAPPING:
-            print(str(value) + " = " + str(self._FIELDS_MAPPING[value]))
+            print(str(value) + " = " + str(self.__dict__[value]))
 
 
 class User(BasicModel):
@@ -89,20 +92,20 @@ class User(BasicModel):
         pass
 
     def __init__(self, user_id, nickname, join_date, password, email, birth_date):
-        self._FIELDS_MAPPING['id'] = user_id
-        self._FIELDS_MAPPING['nickname'] = nickname
-        self._FIELDS_MAPPING['join_date'] = join_date
-        self._FIELDS_MAPPING['password'] = password
-        self._FIELDS_MAPPING['email'] = email
-        self._FIELDS_MAPPING['status'] = type(self).__name__
-        self._FIELDS_MAPPING['birth_date'] = birth_date
-        self._FIELDS_MAPPING['banned'] = False
+        self.__dict__['id'] = user_id
+        self.__dict__['nickname'] = nickname
+        self.__dict__['join_date'] = join_date
+        self.__dict__['password'] = password
+        self.__dict__['email'] = email
+        self.__dict__['status'] = type(self).__name__
+        self.__dict__['birth_date'] = birth_date
+        self.__dict__['banned'] = False
 
 
 class Moderator(User):
     def __init__(self, user_id,  nickname, join_date, password, service_count, email, birth_date):
         super().__init__(user_id, nickname, join_date, password, email, birth_date)
-        self._FIELDS_MAPPING['service_count'] = service_count
+        self.__dict__['service_count'] = service_count
 
     @staticmethod
     def ban(nickname):
@@ -121,6 +124,7 @@ class Moderator(User):
 
 user1 = User(user_id=0, nickname="meme-poster", join_date=datetime.datetime(2019, 5, 17), password="mamkuvkinovodil",
              email='mamkatvoya@gmail.com', birth_date=datetime.datetime(2000, 4, 18))
+
 user2 = Moderator(user_id=1, nickname="Vitas", join_date=datetime.datetime(2019, 5, 17), password="7element",
                   email='AAAAAAAAA@gmail.com', birth_date=datetime.datetime(1979, 4, 13), service_count=69)
 users = [user1, user2]
