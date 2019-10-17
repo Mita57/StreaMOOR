@@ -94,7 +94,7 @@ class User(BasicModel):
     def login(self, password, nickname):
         pass
 
-    def logout(self, password, nickname):
+    def logout(self, nickname):
         pass
 
     def __init__(self, nickname, join_date, password, email, birth_date):
@@ -136,8 +136,6 @@ class Moderator(User):
     def set_chat_timeout(self, nickname, seconds):
         pass
 
-    def ban_channel(self, nickname):
-        pass
 
 
 user1 = User(nickname="meme-poster", join_date=datetime.datetime(2019, 5, 17), password="mamkuvkinovodil",
