@@ -157,5 +157,7 @@ except sqlite3.OperationalError:
 for X in users:
     User.query(
         """
-            INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?) """, (X.__getattr__('nickname'), X.__getattr__('join_date'), X.__getattr__('password'), X.__getattr__('email'), X.__getattr__('status'), X.__getattr__('birth_date'), X.__getattr__('banned')))
+            INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?) """,
+        (X.__getattr__('nickname'), X.__getattr__('join_date'), X.__getattr__('password'),
+         X.__getattr__('email'), X.__getattr__('status'), X.__getattr__('birth_date'), X.__getattr__('banned')))
 
