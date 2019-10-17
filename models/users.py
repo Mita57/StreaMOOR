@@ -73,13 +73,6 @@ class BasicModel(SQLModel):
 class User(BasicModel):
     _DATABASE = 'users.db'
     _TABLE = 'users'
-    nickname: str
-    join_date: datetime
-    password: str
-    email: str
-    birth_date: datetime
-    status: str
-    banned: bool
 
     _FIELDS_MAPPING = {
         'nickname': str,
@@ -119,7 +112,6 @@ class Moderator(User):
         'service_count': int,
         'banned': bool
     }
-    service_count: int
 
     def __init__(self, nickname, join_date, password, service_count, email, birth_date):
         super().__init__(nickname, join_date, password, email, birth_date)
@@ -135,7 +127,6 @@ class Moderator(User):
 
     def set_chat_timeout(self, nickname, seconds):
         pass
-
 
 
 user1 = User(nickname="meme-poster", join_date=datetime.datetime(2019, 5, 17), password="mamkuvkinovodil",
