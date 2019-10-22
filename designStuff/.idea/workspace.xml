@@ -3,14 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cd7cc82d-3395-4d50-9225-171093e9b96b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ElonMusk.html" beforeDir="false" afterPath="$PROJECT_DIR$/ElonMusk.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EvilArthas.html" beforeDir="false" afterPath="$PROJECT_DIR$/EvilArthas.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoorPavelNardy.html" beforeDir="false" afterPath="$PROJECT_DIR$/MoorPavelNardy.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VladimirSoloviev.html" beforeDir="false" afterPath="$PROJECT_DIR$/VladimirSoloviev.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dungeonMaster.html" beforeDir="false" afterPath="$PROJECT_DIR$/dungeonMaster.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vitas.html" beforeDir="false" afterPath="$PROJECT_DIR$/vitas.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -79,7 +73,7 @@
       <workItem from="1571711805001" duration="8692000" />
       <workItem from="1571722173403" duration="10924000" />
       <workItem from="1571738616930" duration="425000" />
-      <workItem from="1571739118016" duration="236000" />
+      <workItem from="1571739118016" duration="8315000" />
     </task>
     <servers />
   </component>

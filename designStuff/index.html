@@ -16,7 +16,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
             integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
             crossorigin="anonymous"></script>
-    <script src="js/script.js" ></script>
+    <script src="js/script.js"></script>
 </head>
 
 <body>
@@ -25,9 +25,9 @@
         <nav id="sidebar">
             <div class="input-group md-form form-sm form-2 pl-0 searchStreams">
                 <input class="form-control my-0 py-1 red-border " type="text" placeholder="Search" aria-label="Search">
-                <div class="input-group-append" >
+                <div class="input-group-append">
                     <span class="input-group-text ">
-                        <i class="fas fa-search " ></i></span>
+                        <i class="fas fa-search "></i></span>
                 </div>
             </div>
             <ul class="list-unstyled components">
@@ -144,42 +144,56 @@
                 <div class="card mx-auto align-self-center h-auto  hubsList" style="width: 60rem;">
                     <div class="card-header"> Hubs:</div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item gaming" onmouseover="gamingOn()" onmouseleave="gamingOut()">
-                            <div class="sas">
-                                <img  id="gamingPic" src="assets/gamingHub.png">
-                            </div>
-                            Gaming
-                        </li>
-                        <li class="list-group-item creative" onmouseover="creativeOn()" onmouseleave="creativeOut()">
-                            <div class="sas">
-                                <img id="creativePic" src="assets/creativeHub.png">
-                            </div>
-                            Creative
-                        </li>
-                        <li class="list-group-item podcast" onmouseleave="podcastsOut()" onmouseover="podcastsOn()">
-                            <div class="sas">
-                                <img id="podcastPic" src="assets/podcastsHub.png">
-                            </div>
-                            Podcasts
-                        </li>
-                        <li class="list-group-item science" onmouseover="sciOn()" onmouseleave="sciOut()">
-                            <div class="sas">
-                                <img id="sciPic" src="assets/sciHub.png">
-                            </div>
-                            Science & edu
-                        </li>
-                        <li class="list-group-item irl" onmouseover="irlOn()" onmouseleave="irlOut()">
-                            <div class="sas">
-                                <img id="irlPic" src="assets/irlHub.png">
-                            </div>
-                            IRL
-                        </li>
-                        <li class="list-group-item etc" onmouseover="etcOn()" onmouseleave="etcOut()">
-                            <div class="sas">
-                                <img id="etcPic" style="width: 50px; height:15px; margin-top: 20px" src="assets/etcHub.png">
-                            </div>
-                            ETC
-                        </li>
+                            <li class="list-group-item gaming" onmouseover="gamingOn()" onmouseleave="gamingOut()">
+                                <a href="gamingHub.html">
+                                <div class="sas">
+                                    <img id="gamingPic" src="assets/gamingHub.png">
+                                </div>
+                                Gaming
+                                </a>
+                            </li>
+                            <li class="list-group-item creative" onmouseover="creativeOn()"
+                                onmouseleave="creativeOut()">
+                                <a href="creativeHub.html">
+                                <div class="sas">
+                                    <img id="creativePic" src="assets/creativeHub.png">
+                                </div>
+                                Creative
+                                </a>
+                            </li>
+                            <li class="list-group-item podcast" onmouseleave="podcastsOut()" onmouseover="podcastsOn()">
+                                <a href="podcastsHub.html">
+                                <div class="sas">
+                                    <img id="podcastPic" src="assets/podcastsHub.png">
+                                </div>
+                                Podcasts
+                                </a>
+                            </li>
+                            <li class="list-group-item science" onmouseover="sciOn()" onmouseleave="sciOut()">
+                                <a href="sciHub.html">
+                                <div class="sas">
+                                    <img id="sciPic" src="assets/sciHub.png">
+                                </div>
+                                Science & edu
+                                </a>
+                            </li>
+                            <li class="list-group-item irl" onmouseover="irlOn()" onmouseleave="irlOut()">
+                                <a href="irlHub.html">
+                                <div class="sas">
+                                    <img id="irlPic" src="assets/irlHub.png">
+                                </div>
+                                IRL
+                                </a>
+                            </li>
+                            <li class="list-group-item etc" onmouseover="etcOn()" onmouseleave="etcOut()">
+                                <a href="etcHub.html">
+                                <div class="sas">
+                                    <img id="etcPic" style="width: 50px; height:15px; margin-top: 20px"
+                                         src="assets/etcHub.png">
+                                </div>
+                                ETC
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>

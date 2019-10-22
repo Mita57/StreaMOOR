@@ -178,6 +178,18 @@ ul ul a {
     color:greenyellow;
 }
 
+.card-img-top{
+}
+.card-img-bot{
+    height: 100px;
+    width: 100px;
+    margin-left: 120px;
+}
+.card{
+    background-color: darkslategrey;
+    color: white;
+    padding: 10px;
+}
 
 @media (max-width: 768px) {
     #sidebar {
