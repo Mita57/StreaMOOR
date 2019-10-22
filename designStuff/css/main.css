@@ -94,7 +94,7 @@ ul ul a {
     color: red;
 }
 .podcast{
-    color: magenta;
+    color: blue;
 }
 .science{
     color: deepskyblue;
@@ -156,11 +156,12 @@ ul ul a {
 }
 .stream img{
     height: 590px;
+    width: 800px;
 }
 
 .chat ul{
     overflow-y: scroll;
-    height: 500px;
+    height: 530px;
     background-color: #363636;
 }
 .chat-messages li{
