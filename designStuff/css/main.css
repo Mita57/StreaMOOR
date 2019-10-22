@@ -70,17 +70,6 @@ ul ul a {
     transition: all 0.3s;
 }
 
-@media (max-width: 768px) {
-    #sidebar {
-        margin-left: -250px;
-        transform: rotateY(90deg);
-    }
-    #sidebar.active {
-        margin-left: 0;
-        transform: none;
-    }
-
-}
 
 .wrapper li img{
     height: 50px;
@@ -156,4 +145,47 @@ ul ul a {
 .list-group-item:hover{
     background-color: #696969;
     text-decoration: none;
-    transition: all 0.3s;}
+    transition: all 0.3s;
+}
+.pageImg img{
+    width: 150px;
+}
+.stream{
+    display: flex;
+    align-items: flex-start;
+}
+.stream img{
+    height: 590px;
+}
+
+.chat ul{
+    overflow-y: scroll;
+    height: 500px;
+    background-color: #363636;
+}
+.chat-messages li{
+    width: 400px;
+    color: white;
+    font-size: 10pt;
+    border: none;
+    padding: 0 10px 0 10px;
+}
+.chat-messages li:hover{
+    background-color: darkslategrey;
+}
+.chat_user{
+    color:greenyellow;
+}
+
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+        transform: rotateY(90deg);
+    }
+    #sidebar.active {
+        margin-left: 0;
+        transform: none;
+    }
+
+}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="">
 
 <head>
     <meta charset="utf-8">
@@ -16,18 +16,18 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
             integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
             crossorigin="anonymous"></script>
-    <script src="js/script.js" ></script>
+    <script src="js/script.js"></script>
 </head>
 
-<body>
+<body onload="chatMock()">
     <div class="wrapper">
         <!-- Sidebar Holder -->
         <nav id="sidebar">
             <div class="input-group md-form form-sm form-2 pl-0 searchStreams">
                 <input class="form-control my-0 py-1 red-border " type="text" placeholder="Search" aria-label="Search">
-                <div class="input-group-append" >
+                <div class="input-group-append">
                     <span class="input-group-text ">
-                        <i class="fas fa-search " ></i></span>
+                        <i class="fas fa-search "></i></span>
                 </div>
             </div>
             <ul class="list-unstyled components">
@@ -35,7 +35,7 @@
                     <p>Currently streaming: </p>
                 </li>
                 <li>
-                    <a href="vitas.html">
+                    <a href="#">
                         <img src="assets/vitas.jpg">
                         <span class="streamer_name creative">
                             Vitas <br>
@@ -102,7 +102,6 @@
                 </li>
             </ul>
         </nav>
-
         <!--header-->
         <div id="content">
             <nav class="navbar navbar-expand-lg navbar-primary bg-primary headerStuff">
@@ -136,77 +135,69 @@
                             </li>
                         </ul>
                     </div>
+
                 </div>
             </nav>
-            <div class="stuff">
-                <h1>Welcome to the StreaMOOR! Please select the hub to continue</h1>
-                <!-- hubs list -->
-                <div class="card mx-auto align-self-center h-auto  hubsList" style="width: 60rem;">
-                    <div class="card-header"> Hubs:</div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item gaming" onmouseover="gamingOn()" onmouseleave="gamingOut()">
-                            <div class="sas">
-                                <img  id="gamingPic" src="assets/gamingHub.png">
-                            </div>
-                            Gaming
-                        </li>
-                        <li class="list-group-item creative" onmouseover="creativeOn()" onmouseleave="creativeOut()">
-                            <div class="sas">
-                                <img id="creativePic" src="assets/creativeHub.png">
-                            </div>
-                            Creative
-                        </li>
-                        <li class="list-group-item podcast" onmouseleave="podcastsOut()" onmouseover="podcastsOn()">
-                            <div class="sas">
-                                <iTg id="podcastPic" src="assets/podcastsHub.png">
-                            </div>
-                            Podcasts
-                        </li>
-                        <li class="list-group-item science" onmouseover="sciOn()" onmouseleave="sciOut()">
-                            <div class="sas">
-                                <img id="sciPic" src="assets/sciHub.png">
-                            </div>
-                            Science & edu
-                        </li>
-                        <li class="list-group-item irl" onmouseover="irlOn()" onmouseleave="irlOut()">
-                            <div class="sas">
-                                <img id="irlPic" src="assets/irlHub.png">
-                            </div>
-                            IRL
-                        </li>
-                        <li class="list-group-item etc" onmouseover="etcOn()" onmouseleave="etcOut()">
-                            <div class="sas">
-                                <img id="etcPic" style="width: 50px; height:15px; margin-top: 20px" src="assets/etcHub.png">
-                            </div>
-                            ETC
-                        </li>
+            <!--user page-->
+            <nav class="navbar navbar-expand-lg navbar-primary headerStuff"
+                 style="background-color: yellow; color: black; margin-top: -30px;">
+                <div class="container-fluid header">
+                    <div class="form-inline">
+                        <a href="vitas.html" class="navbar-brand logoMoor">
+                            <img src="assets/vitas.jpg" class="logoMoor" alt="">
+                            Vitas
+                        </a>
+                        <ul class="nav nav-pills">
+                            <li class="nav-item ">
+                                <a class="nav-link active" href="#">Main</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Videos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Info</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <form class="form-inline my-2 my-lg-0">
+                        Subscribers: 14881337
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Subscribe</button>
+                    </form>
+                </div>
+
+            </nav>
+            <div class="d-inline-block stream">
+                <div class=" ml-4 d-inline-block">
+                    <img src="assets/pesnya.gif">
+                </div>
+                <div class="card chat position-absolute d-inline-block ml-5"  >
+                    <div class="card-header">
+                        Stream chat
+                    </div>
+                    <ul class="list-group list-group-flush  chat-messages " id="chattik">
+                        <li class="list-group-item"><p><span class="chat_user">mamka:</span>Я пришел дать эту песню</p></li>
+                        <li class="list-group-item"><p><span class="chat_user">Penoplast:</span>Я пришел дать эту песню</p></li>
+                        <li class="list-group-item"><p><span class="chat_user">Aliexpress:</span>Я пришел дать эту песню</p></li>
+                        <li class="list-group-item"><p><span class="chat_user">PHP<3:</span>Я пришел дать эту песню</p></li>
+                        <li class="list-group-item"><p><span class="chat_user">outism:</span>А А АА А А АА А А А ААА</p></li>
+                        <li class="list-group-item"><p><span class="chat_user">RemoveKebab:</span>А А АА А А АА А А А ААА</p></li>
+                        <li class="list-group-item"><p><span class="chat_user">CheckMother:</span>А А АА А А АА А А А ААА</p></li>
+                        <li class="list-group-item"><p><span class="chat_user">SIAKOD:</span>ЛУЛУУЛУЛУЛУЛ АА</p></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
-    <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
             integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
             crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
             integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-            crossorigin="anonymous"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-                $(this).toggleClass('active');
-            });
-        });
-    </script>
+
 </body>
 
 </html>
