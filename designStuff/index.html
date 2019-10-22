@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>StreaMOOR</title>
+    <link rel="icon" type="image/png" href="assets/MOOR.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+            integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+            crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+            integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+            crossorigin="anonymous"></script>
+    <script src="js/script.js" ></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="input-group md-form form-sm form-2 pl-0 searchStreams">
+                <input class="form-control my-0 py-1 red-border " type="text" placeholder="Search" aria-label="Search">
+                <div class="input-group-append" >
+                    <span class="input-group-text ">
+                        <i class="fas fa-search " ></i></span>
+                </div>
+            </div>
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <p>Currently streaming: </p>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="assets/vitas.jpg">
+                        <span class="streamer_name creative">
+                            Vitas <br>
+                        </span>
+                        <span class="streamer_playing creative">
+                            Singing the 7th element for 10 hours
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="assets/arthas.jpg">
+                        <span class="streamer_name gaming">
+                            EvilArthas <br>
+                        </span>
+                        <span class="streamer_playing gaming">
+                            НЫА ТВАРИНА В СОЛЯНОГО ААААААААА
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="assets/solo.png">
+                        <span class="streamer_name podcast">
+                            Vladimir_Soloviev <br>
+                        </span>
+                        <span class="streamer_playing podcast">
+                            А у нас в россии хорошо, приятно, дома рушатся очень аккуратно
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="assets/Elon.png">
+                        <span class="streamer_name science">
+                            ElonMusk <br>
+                        </span>
+                        <span class="streamer_playing science">
+                            Trying to come up with a way to get people to Mars
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="assets/mooracc.jpg">
+                        <span class="streamer_name irl">
+                            MoorPavelNardy <br>
+                        </span>
+                        <span class="streamer_playing irl">
+                            Пыхтим в курилке матфака без регистрации и СМС хоспаде
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="assets/asianBoss.png">
+                        <span class="streamer_name etc">
+                            dungeonMaster <br>
+                        </span>
+                        <span class="streamer_playing etc">
+                            Fucking slaaaaaves, get your ass back here! Fuck youuuuuuu!!!!
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!--header-->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-primary bg-primary headerStuff">
+                <div class="container-fluid header">
+                    <a href="index.html" class="navbar-brand logoMoor">
+                        <img src="assets/MOOR.png" class="logoMoor" alt="">
+                        StreaMOOR
+                    </a>
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Help</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Feedback</a>
+                        </li>
+                    </ul>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <img src="assets/ava.png">
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">CHIPSEKI</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Log out</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="stuff">
+                <h1>Welcome to the StreaMOOR! Please select the hub to continue</h1>
+                <!-- hubs list -->
+                <div class="card mx-auto align-self-center h-auto  hubsList" style="width: 60rem;">
+                    <div class="card-header"> Hubs:</div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item gaming" onmouseover="gamingOn()" onmouseleave="gamingOut()">
+                            <div class="sas">
+                                <img  id="gamingPic" src="assets/gamingHub.png">
+                            </div>
+                            Gaming
+                        </li>
+                        <li class="list-group-item creative" onmouseover="creativeOn()" onmouseleave="creativeOut()">
+                            <div class="sas">
+                                <img id="creativePic" src="assets/creativeHub.png">
+                            </div>
+                            Creative
+                        </li>
+                        <li class="list-group-item podcast" onmouseleave="podcastsOut()" onmouseover="podcastsOn()">
+                            <div class="sas">
+                                <img id="podcastPic" src="assets/podcastsHub.png">
+                            </div>
+                            Podcasts
+                        </li>
+                        <li class="list-group-item science" onmouseover="sciOn()" onmouseleave="sciOut()">
+                            <div class="sas">
+                                <img id="sciPic" src="assets/sciHub.png">
+                            </div>
+                            Science & edu
+                        </li>
+                        <li class="list-group-item irl" onmouseover="irlOn()" onmouseleave="irlOut()">
+                            <div class="sas">
+                                <img id="irlPic" src="assets/irlHub.png">
+                            </div>
+                            IRL
+                        </li>
+                        <li class="list-group-item etc" onmouseover="etcOn()" onmouseleave="etcOut()">
+                            <div class="sas">
+                                <img id="etcPic" style="width: 50px; height:15px; margin-top: 20px" src="assets/etcHub.png">
+                            </div>
+                            ETC
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+            crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+            integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+            crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $(this).toggleClass('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
