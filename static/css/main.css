@@ -1,0 +1,204 @@
+@font-face{
+    font-family: 'RodchenkoCTT';
+    src:url('https://nomail.com.ua/files/woff/4f92ce49d3e9bb369d836662431a8194.woff') format('woff');
+}
+
+body {
+    font-family:  sans-serif;
+    background: #363636;
+}
+
+
+a, a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
+    margin-bottom: 30px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    perspective: 1500px;
+}
+
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: darkslategrey;
+    color: #fff;
+}
+
+
+#sidebar li p{
+    font-size: 20pt;
+}
+
+
+#sidebar ul p {
+    padding: 5px;
+}
+
+#sidebar ul li a {
+    padding: 5px;
+    display: block;
+    border-bottom: #696969 1px solid;
+    border-top: #696969 1px solid;
+}
+#sidebar ul li a:hover {
+    color: #7386D5;
+    background: #696969;
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #6d7fcc;
+}
+
+#content {
+    width: 100%;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+
+.wrapper li img{
+    height: 50px;
+    float: right;
+}
+.streamer_name{
+    font-size: 12pt;
+    text-decoration: underline;
+}
+.streamer_playing{
+    font-size: 8pt;
+}
+#sidebar img{
+    height: 50px;
+    width: 50px;
+    border: green 1px solid;
+}
+.creative{
+    color: yellow;
+}
+.gaming{
+    color: red;
+}
+.podcast{
+    color: blue;
+}
+.science{
+    color: deepskyblue;
+}
+.irl{
+    color: limegreen;
+}
+.etc{
+    color: orange;
+}
+.logoMoor{
+    height: 50px;
+    font-family: RodchenkoCTT;
+}
+.stuff h1{
+    text-align: center;
+    color: #0275d8;
+}
+.hubsList{
+    font-size: 28pt;
+    background-color: #363636;
+}
+
+.headerStuff{
+    color: white;
+}
+.headerStuff ul li:hover {
+    color: #7386D5;
+    background: white;
+}
+.list-group-item{
+    background-color: #363636;
+    font-size: 28pt;
+    border-bottom: white 1px solid;
+    border-top: white 1px solid;
+}
+.searchStreams{
+    padding: 10px;
+}
+.card-header{
+    background-color: #292b4f;
+    color:white;
+    border-bottom: 3px solid white;
+}
+.card{
+    border: 3px solid white;
+}
+.list-group-item:hover{
+    background-color: #696969;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+.pageImg img{
+    width: 150px;
+}
+.stream{
+    display: flex;
+    align-items: flex-start;
+}
+.stream img{
+    height: 590px;
+    width: 800px;
+}
+
+.chat ul{
+    overflow-y: scroll;
+    height: 530px;
+    background-color: #363636;
+}
+.chat-messages li{
+    width: 400px;
+    color: white;
+    font-size: 10pt;
+    border: none;
+    padding: 0 10px 0 10px;
+}
+.chat-messages li:hover{
+    background-color: darkslategrey;
+}
+.chat_user{
+    color:greenyellow;
+}
+
+.card-img-top{
+}
+.card-img-bot{
+    height: 100px;
+    width: 100px;
+    margin-left: 120px;
+}
+.card{
+    background-color: darkslategrey;
+    color: white;
+    padding: 10px;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+        transform: rotateY(90deg);
+    }
+    #sidebar.active {
+        margin-left: 0;
+        transform: none;
+    }
+
+}
