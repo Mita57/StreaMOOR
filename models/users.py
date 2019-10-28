@@ -85,7 +85,8 @@ class User(BasicModel):
         'status': str,
         'banned': bool,
         'online': bool,
-        'watching_now': int
+        'watching_now': int,
+        'current_hub': str,
     }
 
     def login(self, password, nickname):
@@ -120,7 +121,8 @@ class Moderator(User):
         'service_count': int,
         'banned': bool,
         'online': bool,
-        'watching_now': int
+        'watching_now': int,
+        'current_hub': str,
     }
 
     def __init__(self, nickname, join_date, password, service_count, email, birth_date, watching_now):
