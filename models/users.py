@@ -71,17 +71,21 @@ class BasicModel(SQLModel):
 
 
 class User(BasicModel):
-    _DATABASE = 'users.db'
+    _DATABASE = 'streamoor.db'
     _TABLE = 'users'
 
     _FIELDS_MAPPING = {
         'nickname': str,
         'join_date': datetime,
         'password': str,
+        'img': str,
         'email': str,
+        'description': str,
         'birth_date': datetime,
         'status': str,
-        'banned': bool
+        'banned': bool,
+        'online': bool,
+        'watching_now': int
     }
 
     def login(self, password, nickname):
@@ -107,10 +111,14 @@ class Moderator(User):
         'join_date': datetime,
         'password': str,
         'email': str,
+        'img': str,
         'birth_date': datetime,
+        'description': str,
         'status': str,
         'service_count': int,
-        'banned': bool
+        'banned': bool,
+        'online': bool,
+        'watching_now': int
     }
 
     def __init__(self, nickname, join_date, password, service_count, email, birth_date):
@@ -143,6 +151,7 @@ try:
      email VARCHAR(30), status VARCHAR(10), birth_date DATE, banned bit )""")
 except sqlite3.OperationalError:
     pass
+
 for X in users:
     User.query(
         """
