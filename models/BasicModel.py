@@ -34,10 +34,22 @@ class SQLModel:
         conn.close()
 
     @classmethod
+    def insert(cls, values):
+        values_query = ''
+        for X in values:
+            values_query += X + ','
+
+        with closing(psycopg2.connect()) as conn:
+            with conn.cursor() as cursor:
+                sql_insert_query = """INSERT INTO %s VALUES (%s) """
+                cursor.execute(sql_insert_query, cls._TABLE, values_query)
+
+
+    @classmethod
     def get_by_id(cls, elem_id, cols):
         with closing(psycopg2.connect()) as conn:
             with conn.cursor() as cursor:
-                sql_select_query = """SELECT %s FROM %s WHERE id=$s """
+                sql_select_query = """SELECT %s FROM %s WHERE id=%s """
                 cursor.execute(sql_select_query, cols, cls._TABLE, elem_id)
 
     @classmethod
@@ -48,7 +60,11 @@ class SQLModel:
                 cursor.execute(sql_update_query, cls._TABLE, column,value, elem_id)
 
     @classmethod
-    def delete_by_id(cls, ):
+    def delete_by_id(cls, value):
+        with closing(psycopg2.connect()) as conn:
+            with conn.cursor() as cursor:
+                sql_delete_query = """DELETE FROM %s where id=%s"""
+                cursor.execute(sql_delete_query, cls._TABLE, value)
 
 
 class BasicModel(SQLModel):
