@@ -36,7 +36,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../TELEMOORTATOR" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -76,6 +76,9 @@
       <workItem from="1572327176760" duration="52000" />
       <workItem from="1572327325406" duration="62000" />
       <workItem from="1572328146031" duration="51000" />
+      <workItem from="1572614620286" duration="753000" />
+      <workItem from="1572621330289" duration="20000" />
+      <workItem from="1572621386555" duration="45000" />
     </task>
     <servers />
   </component>
