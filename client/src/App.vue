@@ -13,7 +13,7 @@
             </v-toolbar-items>
             <v-spacer></v-spacer>
             <v-toolbar-items>
-                <v-btn text class=" white--text" to="/account">Аккаунт</v-btn>
+                <v-btn text class=" white--text" to="/account">{{getLogin()}}</v-btn>
                 <v-btn text class="white--text" @click="logout" id="cock">Войти</v-btn>
             </v-toolbar-items>
         </v-app-bar>
@@ -45,6 +45,9 @@
               </v-list-item>
             </v-list>
         </v-navigation-drawer>
+
+        <!--content-->
+
         <v-content>
             <router-view/>
         </v-content>
@@ -53,20 +56,15 @@
 </template>
 
 <script>
-    import firebase from 'firebase';
+    import axios from 'axios';
 
     export default {
-        name: 'App',
-        data: () => ({
-            //
-        }),
-        methods: {
-            logout: function () {
-                document.getElementById("cock").innerText = "Войти";
-                firebase.auth().signOut().then(() => {
-                    this.$router.replace('login')
-                });
-            }
+
+        computed: {
+            getLogin() {
+                return login;
+            },
         }
-    };
+    }
+
 </script>

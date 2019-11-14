@@ -1,5 +1,6 @@
 import datetime
 from .BasicModel import BasicModel
+from flask_sqlalchemy import SQLAlchemy
 
 
 class User(BasicModel):

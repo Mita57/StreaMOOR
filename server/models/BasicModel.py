@@ -9,7 +9,7 @@ class AbstractClassError(Exception):
 class SQLModel:
     _DATABASE = None
     _TABLE = None
-    _USER= None
+    _USER = None
     _PASSWORD = None
     _HOST = None
     _PORT = None
@@ -19,8 +19,8 @@ class SQLModel:
 
     @classmethod
     def _connect(cls):
-        return psycopg2.connect(database = cls._DATABASE, table = cls._TABLE, user = cls._USER,
-                                password = cls._PASSWORD, host = cls._HOST, port = cls._PORT)
+        return psycopg2.connect(database=cls._DATABASE, table=cls._TABLE, user=cls._USER,
+                                password=cls._PASSWORD, host=cls._HOST, port=cls._PORT)
 
     @classmethod
     def query(cls, query, attrs=None):
@@ -44,20 +44,21 @@ class SQLModel:
                 sql_insert_query = """INSERT INTO %s VALUES (%s) """
                 cursor.execute(sql_insert_query, cls._TABLE, values_query)
 
-
     @classmethod
     def get_by_id(cls, elem_id, cols):
         with closing(psycopg2.connect()) as conn:
             with conn.cursor() as cursor:
                 sql_select_query = """SELECT %s FROM %s WHERE id=%s """
                 cursor.execute(sql_select_query, cols, cls._TABLE, elem_id)
+                value = cursor.fectchall()
+                return value
 
     @classmethod
     def update_by_id(cls, column, value, elem_id):
         with closing(psycopg2.connect()) as conn:
             with conn.cursor() as cursor:
                 sql_update_query = """UPDATE %s SET %s=%s WHERE id=%s"""
-                cursor.execute(sql_update_query, cls._TABLE, column,value, elem_id)
+                cursor.execute(sql_update_query, cls._TABLE, column, value, elem_id)
 
     @classmethod
     def delete_by_id(cls, value):
@@ -87,4 +88,3 @@ class BasicModel(SQLModel):
     def print_info(self):
         for value in self._FIELDS_MAPPING:
             print(str(value) + " = " + str(self.__dict__[value]))
-
