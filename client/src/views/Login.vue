@@ -1,7 +1,6 @@
 <template>
   <div class="login mt-4" >
     <h3>Вход</h3>
-    <p :style="result.style">{{result.info}}</p>
     <v-text-field type="text"  v-model="email" placeholder="Email"><br> </v-text-field>
     <v-text-field type="password" v-model="password" placeholder="Пароль"><br> </v-text-field>
     <v-btn @click="login" color="success">Войти</v-btn>
@@ -10,23 +9,29 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import firebase from 'firebase';
   export default {
     name: 'login',
     data() {
       return {
         email: '',
-        password: '',
-        result:''
+        password: ''
       }
     },
     methods: {
-      login() {
-        const path = 'http://localhost:5000/login';
-        let payload = {email: this.email, pwrd : this.password};
-        data.result = axios.post(path, payload);
+      login: function() {
+        document.getElementById("cock").innerText = "Выйти";
+        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
+          () => {
+            this.$router.replace('account');
+            this.$store.dispatch('worksModule/openDBChannel');
+          },
+          (err) => {
+            alert('Oops. ' + err.message)
+          }
+        );
       }
-    },
+    }
   }
 </script>
 
