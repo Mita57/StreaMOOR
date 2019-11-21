@@ -13,8 +13,7 @@
       <v-spacer></v-spacer>
       <v-toolbar-items >
         <v-btn text class=" white--text" to="/account">Аккаунт</v-btn>
-        <v-btn text class="white--text"  @click="logout" id="cock">Войти</v-btn>
-        <v-btn text class=" white--text" to="/account"> <img class="mr-3" :src="require('./assets/money.png')" height="40"/> 300</v-btn>
+        <v-btn text class="white--text"  @click="" id="cock">Войти</v-btn>
       </v-toolbar-items>
     </v-app-bar>
     <v-navigation-drawer app >
