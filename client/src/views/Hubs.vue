@@ -1,18 +1,69 @@
 <template>
     <div id="land">
-        <section>
-            <v-card dark>
-                <div class="d-flex flex-no-wrap justify-space-between">
-                    <div>
-                        <v-card-title class="headline" >Гейминг</v-card-title>
-                        <v-card-subtitle>Задроты без личной жизни блэт</v-card-subtitle>
-                    </div>
-                    <v-avatar class="ma-3" size="125">
-                        <v-img src="../src/assets/Igor.png"></v-img>
-                    </v-avatar>
-                </div>
-            </v-card>
-        </section>
+        <v-container>
+                <v-col cols="12">
+                    <v-card dark class="mt-1" tile>
+                        <div class="d-flex flex-no-wrap justify-space-between">
+                            <div>
+                                <v-card-title class="headline">Гейминг</v-card-title>
+                            </div>
+                            <v-avatar class="ma-3" height="60" width="90" tile>
+                                <v-img src="../assets/gamingHub.png"></v-img>
+                            </v-avatar>
+                        </div>
+                    </v-card>
+                    <v-card dark class="mt-1" tile>
+                        <div class="d-flex flex-no-wrap justify-space-between">
+                            <div>
+                                <v-card-title class="headline">Креатив</v-card-title>
+                            </div>
+                            <v-avatar class="ma-3" height="60" width="105" tile>
+                                <v-img src="../assets/creativeHub.png"></v-img>
+                            </v-avatar>
+                        </div>
+                    </v-card>
+                    <v-card dark class="mt-1" tile>
+                        <div class="d-flex flex-no-wrap justify-space-between">
+                            <div>
+                                <v-card-title class="headline">Подкасты</v-card-title>
+                            </div>
+                            <v-avatar class="ma-3 mr-10" height="60" width="40" min-width="10" tile>
+                                <v-img src="../assets/podcastsHub.png"></v-img>
+                            </v-avatar>
+                        </div>
+                    </v-card>
+                    <v-card dark class="mt-1" tile>
+                        <div class="d-flex flex-no-wrap justify-space-between">
+                            <div>
+                                <v-card-title class="headline">Наука и обучение</v-card-title>
+                            </div>
+                            <v-avatar class="ma-3 mr-8" height="60" width="55" tile>
+                                <v-img src="../assets/sciHub.png"></v-img>
+                            </v-avatar>
+                        </div>
+                    </v-card>
+                    <v-card dark class="mt-1" tile>
+                        <div class="d-flex flex-no-wrap justify-space-between">
+                            <div>
+                                <v-card-title class="headline">IRL</v-card-title>
+                            </div>
+                            <v-avatar class="ma-3 mr-9" height="60" width="40" min-width="10" tile>
+                                <v-img src="../assets/irlHub.png"></v-img>
+                            </v-avatar>
+                        </div>
+                    </v-card>
+                    <v-card dark class="mt-1" tile>
+                        <div class="d-flex flex-no-wrap justify-space-between">
+                            <div>
+                                <v-card-title class="headline">ETC</v-card-title>
+                            </div>
+                            <v-avatar class="ma-3" height="60"  width="115" tile>
+                                <v-img src="../assets/etcHub.png" height="30"  width="115"></v-img>
+                            </v-avatar>
+                        </div>
+                    </v-card>
+                </v-col>
+        </v-container>
     </div>
 
 </template>

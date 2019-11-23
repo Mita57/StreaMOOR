@@ -23,6 +23,7 @@ const router = new Router({
       component:Hubs
     }
 
+
   ],
   mode: 'history'
 });
