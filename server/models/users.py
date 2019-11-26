@@ -9,7 +9,7 @@ class User(BasicModel):
     _USER = 'root'
     _PASSWORD = 'MOORMOOR'
     _HOST = '127.0.0.1'
-    
+
 
     _FIELDS_MAPPING = {
         'nickname': str,  # primary key

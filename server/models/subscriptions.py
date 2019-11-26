@@ -3,12 +3,22 @@ from .BasicModel import BasicModel
 
 class Subsctiption(BasicModel):
     _DATABASE = 'streamoor.db'
-    _TABLE = 'suscriptions'
+    _TABLE = 'subscriptions'
+    _USER = 'root'
+    _PASSWORD = 'MOORMOOR'
+    _HOST = '127.0.0.1'
 
     _FIELDS_MAPPING = {
         'user': str,  # foreign key
         'subscribed_to': str,  # foreign key
     }
 
-    def subscribe(self, subscribed_to_nickname):
+    def __init__(self, user, subscribed_to):
+        self.user = user
+        self.subscribe_to = subscribed_to
 
+    def subscribe(self):
+        BasicModel.insert(Subsctiption, self.user, self.subscribe_to)
+
+    def unsubscribe(self):
+        BasicModel.delete_by_attrs()

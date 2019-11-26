@@ -13,7 +13,7 @@ def index():
 @app.route('/login', methods=['POST'])
 def login():
     post_data = request.get_json()
-    user = SQLModel.get_by_id((post_data.get('email')), 'email, password')
+    user = SQLModel.get_by_attrs((post_data.get('email')), 'email, password')
     if post_data.get('pwrd') == user[0][1]:
         return jsonify(style='color:lightgreen', info='Вход выполнен', flag=True)
     else:
