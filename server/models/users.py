@@ -6,9 +6,13 @@ from flask_sqlalchemy import SQLAlchemy
 class User(BasicModel):
     _DATABASE = 'streamoor.db'
     _TABLE = 'users'
+    _USER = 'root'
+    _PASSWORD = 'MOORMOOR'
+    _HOST = '127.0.0.1'
+    
 
     _FIELDS_MAPPING = {
-        'nickname': str,
+        'nickname': str,  # primary key
         'join_date': datetime,
         'password': str,
         'img': str,
@@ -18,7 +22,6 @@ class User(BasicModel):
         'status': str,
         'banned': bool,
         'online': bool,
-        'watching_now': int,
         'current_hub': str,
     }
 
@@ -41,7 +44,6 @@ class User(BasicModel):
 
 
 class Moderator(User):
-
     _FIELDS_MAPPING = {
         'nickname': str,
         'join_date': datetime,
@@ -64,13 +66,12 @@ class Moderator(User):
 
     @staticmethod
     def ban(nickname):
-        users[nickname].banned = True
+        pass
 
     @staticmethod
     def unban(nickname):
-        users[nickname].banned = False
+        pass
 
     @staticmethod
     def set_chat_timeout(nickname, seconds):
         pass
-
