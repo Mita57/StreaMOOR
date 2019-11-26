@@ -3,6 +3,7 @@ import Router from 'vue-router';
 
 import Info from "@/views/Info";
 import Hubs from "@/views/Hubs";
+import Register from "@/views/Reister";
 
 Vue.use(Router);
 
