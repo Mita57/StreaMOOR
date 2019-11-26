@@ -38,36 +38,33 @@ class SQLModel:
         values_query = ''
         for X in values:
             values_query += X + ','
-
         with closing(psycopg2.connect()) as conn:
             with conn.cursor() as cursor:
                 sql_insert_query = """INSERT INTO %s VALUES (%s) """
                 cursor.execute(sql_insert_query, cls._TABLE, values_query)
 
     @classmethod
-    def get_by_attrs(cls, id, id_column, cols):
+    def get_by_attrs(cls, cols, attr_cols, attr_values):
         with closing(psycopg2.connect()) as conn:
             with conn.cursor() as cursor:
                 sql_select_query = """SELECT %s FROM %s WHERE %s=%s """
-                cursor.execute(sql_select_query, cols, cls._TABLE, id_column, id)
+                cursor.execute(sql_select_query, cols, cls._TABLE, attr_cols, attr_values)
                 value = cursor.fectchall()
                 return value
 
     @classmethod
-    def update_by_id(cls, column, value, id_col,  id):
+    def update_by_attrs(cls, column, value, attr_cols, attr_values):
         with closing(psycopg2.connect()) as conn:
             with conn.cursor() as cursor:
                 sql_update_query = """UPDATE %s SET %s=%s WHERE %s=%s"""
-                cursor.execute(sql_update_query, cls._TABLE, column, value, id_col, id)
+                cursor.execute(sql_update_query, cls._TABLE, column, value, attr_cols, attr_values)
 
     @classmethod
-    def delete_by_attrs(cls, id_cols, values):
+    def delete_by_attrs(cls, attr_cols, attr_values):
         with closing(psycopg2.connect()) as conn:
             with conn.cursor() as cursor:
                 sql_delete_query = """DELETE FROM %s where %s=%s"""
-                cursor.execute(sql_delete_query, cls._TABLE, id_cols, values)
-
-
+                cursor.execute(sql_delete_query, cls._TABLE, attr_cols, attr_values)
 
 
 class BasicModel(SQLModel):
