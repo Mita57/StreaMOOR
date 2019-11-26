@@ -18,7 +18,7 @@ class Subsctiption(BasicModel):
         self.subscribe_to = subscribed_to
 
     def subscribe(self):
-        BasicModel.insert(Subsctiption, self.user, self.subscribe_to)
+        BasicModel.insert(Subsctiption, values=[self.user, self.subscribe_to])
 
     def unsubscribe(self):
-        BasicModel.delete_by_attrs()
+        BasicModel.delete_by_attrs(Subsctiption, values=[self.user, self.subscribe_to])
