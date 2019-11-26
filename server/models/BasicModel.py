@@ -18,13 +18,29 @@ class SQLModel:
         raise AbstractClassError
 
     @classmethod
+    """
+    connects to the POSTGRESQL batabase
+    
+    Returns:
+    Connection to postgres
+    """
     def _connect(cls):
         return psycopg2.connect(database=cls._DATABASE, table=cls._TABLE, user=cls._USER,
                                 password=cls._PASSWORD, host=cls._HOST, port=cls._PORT)
 
     @classmethod
     def query(cls, query, attrs=None):
-        conn = cls._connect()
+        """
+        Performs a query than us not specified in the other methods
+
+        Args:
+            query; a query to be executed
+            attrs: a set of attrubutes, if needed of the query
+
+        Returns:
+            void
+        """
+        conn = cls._connect(cls._DATABASE)
         cur = conn.cursor()
         if attrs:
             cur.execute(query, attrs)
