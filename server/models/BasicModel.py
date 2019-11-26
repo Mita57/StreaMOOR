@@ -35,10 +35,7 @@ class SQLModel:
 
         Args:
             query; a query to be executed
-            attrs: a set of attrubutes, if needed of the query
-
-        Returns:
-            void
+            attrs: a set of attributes, if needed of the query
         """
         conn = cls._connect(cls._DATABASE)
         cur = conn.cursor()
@@ -51,6 +48,12 @@ class SQLModel:
 
     @classmethod
     def insert(cls, values):
+        """
+            Inserts the data into the database
+
+            args:
+                values: the values to be inserted into the database
+        """
         values_query = ''
         for X in values:
             values_query += X + ','
@@ -61,6 +64,17 @@ class SQLModel:
 
     @classmethod
     def get_by_attrs(cls, cols, attr_cols, attr_values):
+        """
+            Gets the values from the database that correspond to the values given
+
+            attrs:
+                cols: columns that will be returned : list
+                attr_cols: columns that will be used in the WHERE statement : list
+                attr_values: values that will be used in the WHERE statement according to the attr_cols : list
+
+            returns:
+                query result as a dictionary
+        """
         with closing(psycopg2.connect()) as conn:
             with conn.cursor() as cursor:
                 sql_select_query = """SELECT %s FROM %s WHERE %s=%s """
@@ -69,14 +83,30 @@ class SQLModel:
                 return value
 
     @classmethod
-    def update_by_attrs(cls, column, value, attr_cols, attr_values):
+    def update_by_attrs(cls, columns, values, attr_cols, attr_values):
+        """
+            Updates the values in the database that correspond to the values given
+
+            attrs:
+                columns: columns that will be updated : list
+                values: values that will be inserted into the DB in accordance to columns : list
+                attr_cols: columns that will be used in the WHERE statement : list
+                attr_values: values that will be used in the WHERE statement according to the attr_cols : list
+        """
         with closing(psycopg2.connect()) as conn:
             with conn.cursor() as cursor:
                 sql_update_query = """UPDATE %s SET %s=%s WHERE %s=%s"""
-                cursor.execute(sql_update_query, cls._TABLE, column, value, attr_cols, attr_values)
+                cursor.execute(sql_update_query, cls._TABLE, columns, values, attr_cols, attr_values)
 
     @classmethod
     def delete_by_attrs(cls, attr_cols, attr_values):
+        """
+            Deletes the rows in the database that correspond to the values given
+
+            attrs:
+                attr_cols: columns that will be used in the WHERE statement : list
+                attr_values: values that will be used in the WHERE statement according to the attr_cols : list
+        """
         with closing(psycopg2.connect()) as conn:
             with conn.cursor() as cursor:
                 sql_delete_query = """DELETE FROM %s where %s=%s"""
@@ -101,5 +131,8 @@ class BasicModel(SQLModel):
         raise AbstractClassError
 
     def print_info(self):
+        """
+         prints all the attributes of the object
+        """
         for value in self._FIELDS_MAPPING:
             print(str(value) + " = " + str(self.__dict__[value]))
