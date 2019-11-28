@@ -13,8 +13,7 @@
             </v-toolbar-items>
             <v-spacer></v-spacer>
             <v-toolbar-items>
-                <v-btn text class=" white--text" to="/account">Аккаунт</v-btn>
-                <v-btn text class="white--text" @click="" id="cock">Войти</v-btn>
+                    <v-btn text class="white--text" @click="" v-on="on" id="cock">Войти</v-btn>
             </v-toolbar-items>
         </v-app-bar>
 
