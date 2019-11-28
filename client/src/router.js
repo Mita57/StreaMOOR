@@ -22,6 +22,11 @@ const router = new Router({
       path:'/hubs',
       name:'Hubs',
       component:Hubs
+    },
+    {
+      path:'/register',
+      name:'Register',
+      component:Register
     }
 
 

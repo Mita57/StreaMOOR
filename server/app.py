@@ -1,5 +1,6 @@
 import json
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from .models import SQLModel
 
 app = Flask(__name__)
@@ -23,8 +24,6 @@ def login():
         return jsonify(style='color:lightgreen', info='Вход выполнен', flag=True)
     else:
         return jsonify(style='color:red', info='Неправильное имя пользователя или пароль', flag=False)
-
-
 
 
 

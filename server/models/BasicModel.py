@@ -18,13 +18,13 @@ class SQLModel:
         raise AbstractClassError
 
     @classmethod
-    """
-    connects to the POSTGRESQL batabase
-    
-    Returns:
-    Connection to postgres
-    """
     def _connect(cls):
+        """
+        connects to the POSTGRESQL batabase
+
+        Returns:
+        Connection to postgres
+        """
         return psycopg2.connect(database=cls._DATABASE, table=cls._TABLE, user=cls._USER,
                                 password=cls._PASSWORD, host=cls._HOST, port=cls._PORT)
 
@@ -63,7 +63,7 @@ class SQLModel:
                 cursor.execute(sql_insert_query, cls._TABLE, values_query)
 
     @classmethod
-    def get_by_attrs(cls, cols, attr_cols, attr_values):
+    def get_by_attrs(cls, cols, attr_cols, attr_values, group_by=None, order_by=None):
         """
             Gets the values from the database that correspond to the values given
 
@@ -71,16 +71,34 @@ class SQLModel:
                 cols: columns that will be returned : list
                 attr_cols: columns that will be used in the WHERE statement : list
                 attr_values: values that will be used in the WHERE statement according to the attr_cols : list
+                group_by: set None as default, if it is given, then the query result is grouped by this arg
+                sorted_by: set None as defaul, if it si given, then they query result is sorted by this arg
 
             returns:
                 query result as a dictionary
         """
         with closing(psycopg2.connect()) as conn:
             with conn.cursor() as cursor:
-                sql_select_query = """SELECT %s FROM %s WHERE %s=%s """
-                cursor.execute(sql_select_query, cols, cls._TABLE, attr_cols, attr_values)
-                value = cursor.fectchall()
-                return value
+                if group_by is None and sorted_by is None:
+                    sql_select_query = """SELECT %s FROM %s WHERE %s=%s """
+                    cursor.execute(sql_select_query, cols, cls._TABLE, attr_cols, attr_values)
+                    value = cursor.fectchall()
+                    return value
+                if group_by is not None and sorted_by is None:
+                    sql_select_query = """SELECT %s FROM %s WHERE %s=%s GROUP BY %s"""
+                    cursor.execute(sql_select_query, cols, cls._TABLE, attr_cols, attr_values, group_by)
+                    value = cursor.fectchall()
+                    return value
+                if group_by is None and sorted_by is not None:
+                    sql_select_query = """SELECT %s FROM %s WHERE %s=%s ORDER BY %s"""
+                    cursor.execute(sql_select_query, cols, cls._TABLE, attr_cols, attr_values, order_by)
+                    value = cursor.fectchall()
+                    return value
+                else:
+                    sql_select_query = """SELECT %s FROM %s WHERE %s=%s GROUP BY %S ORDER BY %s"""
+                    cursor.execute(sql_select_query, cols, cls._TABLE, attr_cols, attr_values, group_by, order_by)
+                    value = cursor.fectchall()
+                    return value
 
     @classmethod
     def update_by_attrs(cls, columns, values, attr_cols, attr_values):
