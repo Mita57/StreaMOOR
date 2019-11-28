@@ -18,7 +18,14 @@ class Subsctiption(BasicModel):
         self.subscribe_to = subscribed_to
 
     def subscribe(self):
+        """
+        adds the subscription info to the database
+        """
         BasicModel.insert(Subsctiption, values=[self.user, self.subscribe_to])
 
     def unsubscribe(self):
+        """
+        removes the subscription info from the database
+        :return:
+        """
         BasicModel.delete_by_attrs(Subsctiption, values=[self.user, self.subscribe_to])

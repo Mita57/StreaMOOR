@@ -65,12 +65,24 @@ class Moderator(User):
         self.service_count = service_count
 
     @staticmethod
-    def ban(nickname):
-        pass
+    def ban(email):
+        """
+        Bans the user by changing the 'banned' field in the database
+
+        Args:
+             email: email of the user to be banned
+        """
+        BasicModel.update_by_attrs('banned', True, 'email', email)
 
     @staticmethod
-    def unban(nickname):
-        pass
+    def unban(email):
+        """
+        Unbans the user by changing the 'banned' field in the database
+
+        Args:
+             email: email of the user to be unbanned
+        """
+        BasicModel.update_by_attrs('banned', False, 'email', email)
 
     @staticmethod
     def set_chat_timeout(nickname, seconds):
