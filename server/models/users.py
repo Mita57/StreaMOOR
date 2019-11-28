@@ -18,16 +18,18 @@ class User(BasicModel):
     description: str
     birth_date: datetime
     status: str
+    banned: bool
 
     _FIELDS_MAPPING = {
-        'nickname': str,  # primary key
-        'join_date': datetime,
+        'nickname': str,
+        'email': str,  # primary key
         'password': str,
         'img': str,
-        'email': str,
+        'join_date': datetime,
         'description': str,
         'birth_date': datetime,
         'status': str,
+        'banned': bool
     }
 
     def login(self, password, nickname):
@@ -36,11 +38,11 @@ class User(BasicModel):
     def logout(self, nickname):
         pass
 
-    def __init__(self, nickname, join_date, password, email, birth_date):
+    def __init__(self, nickname, email, password, join_date, birth_date):
         self.nickname = nickname
-        self.join_date = join_date
-        self.password = password
         self.email = email
+        self.password = password
+        self.join_date = join_date
         self.status = type(self).__name__
         self.birth_date = birth_date
 
