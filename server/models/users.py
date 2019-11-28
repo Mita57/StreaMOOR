@@ -17,7 +17,6 @@ class User(BasicModel):
     description: str
     birth_date: datetime
     status: str
-    banned: bool
 
 
 
