@@ -2,7 +2,6 @@ import datetime
 from .BasicModel import BasicModel
 from flask_sqlalchemy import SQLAlchemy
 
-
 class User(BasicModel):
     _DATABASE = 'streamoor.db'
     _TABLE = 'users'
@@ -18,7 +17,7 @@ class User(BasicModel):
     description: str
     birth_date: datetime
     status: str
-    banned: bool,
+    banned: bool
 
 
 
