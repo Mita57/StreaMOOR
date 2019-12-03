@@ -4,6 +4,7 @@ import Router from 'vue-router';
 import Info from "@/views/Info";
 import Hubs from "@/views/Hubs";
 import Register from "@/views/Register";
+import Channel from "@/views/Channel";
 
 Vue.use(Router);
 
@@ -27,6 +28,11 @@ const router = new Router({
       path:'/register',
       name:'Register',
       component:Register
+    },
+    {
+      path: '/channel',
+      name: 'Channel',
+      component: Channel
     }
 
 
