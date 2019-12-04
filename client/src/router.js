@@ -4,6 +4,7 @@ import Router from 'vue-router';
 import Info from "@/views/Info";
 import Hubs from "@/views/Hubs";
 import Register from "@/views/Register";
+import Channels from "@/views/Channels";
 import Channel from "@/views/Channel";
 
 Vue.use(Router);
@@ -30,11 +31,16 @@ const router = new Router({
       component:Register
     },
     {
+      path: '/channels',
+      name:'Channels',
+      component:Channels
+    }
+      ,
+    {
       path: '/channel',
       name: 'Channel',
       component: Channel
     }
-
 
   ],
   mode: 'history'

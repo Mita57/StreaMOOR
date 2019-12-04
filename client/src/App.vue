@@ -1,9 +1,9 @@
 <template>
     <v-app>
         <!-- Header -->
-        <v-app-bar app class="blue white--text" absolute fixed clipped-right>
+        <v-app-bar app class="blue white--text" absolute short fixed clipped-right>
             <router-link to="/">
-            <img class="mr-3"  :src="require('./assets/MOOR.png')" height="60"/>
+            <img class="mr-3 mt-1"  :src="require('./assets/MOOR.png')" height="50"/>
             </router-link>
             <v-toolbar-title class="headline text-uppercase" dark>
                 <router-link style="color: white; text-decoration: none" to="/"><span>STREAMOOR</span></router-link>
