@@ -19,11 +19,32 @@
                     <template v-slot:activator="{ on }">
                         <v-btn text class="white--text" @click="" v-on="on" id="cock">Войти</v-btn>
                     </template>
-                    <v-list>
-                        <v-list-item v-for="i in 10">
-                            <v-list-item-title>MEMES</v-list-item-title>
-                        </v-list-item>
-                    </v-list>
+                    <v-card style="width: 500px">
+                        <v-list>
+                            <v-list-item>
+                                <v-list-item-content>
+                                    <v-list-item-title>Войти в ситему</v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </v-list>
+
+                        <v-divider></v-divider>
+
+                        <v-list>
+                            <v-list-item>
+                                <v-text-field type="text" v-model="email" placeholder="Адрес электронной почты"><br> </v-text-field>
+                            </v-list-item>
+                            <v-list-item>
+                                <v-text-field type="password" v-model="password" placeholder="Пароль"><br></v-text-field>
+                            </v-list-item>
+                        </v-list>
+
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn text @click="menu = false">Отмена</v-btn>
+                            <v-btn color="primary" text @click="menu = false">Вход</v-btn>
+                        </v-card-actions>
+                    </v-card>
                 </v-menu>
             </v-toolbar-items>
         </v-app-bar>
