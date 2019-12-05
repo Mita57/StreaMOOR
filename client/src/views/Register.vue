@@ -19,7 +19,7 @@
             </template>
             <v-date-picker v-model="date" no-title @input="menu1 = false"></v-date-picker>
         </v-menu>
-        <v-btn x-large  @click="signUp" color="success" dark class="mt-4" to = "/sign-Up">Зарегистрироваться</v-btn>
+        <v-btn x-large  @click="signUp" color="blue" tile dark class="mt-4" to = "/sign-Up">Зарегистрироваться</v-btn>
     </div>
 </template>
 

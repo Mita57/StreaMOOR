@@ -22,7 +22,30 @@
         <!-- Sidebar -->
         <v-navigation-drawer app>
             <v-list two-line subheader>
-                <v-subheader inset>Сейчас в эфире:</v-subheader>
+                <v-subheader inset style="height: 56px">Сейчас в эфире:</v-subheader>
+                <v-divider></v-divider>
+                <v-list-item>
+                    <v-list-item-avatar tile>
+                        <v-img src="./assets/Igor.png"></v-img>
+                    </v-list-item-avatar>
+
+                    <v-list-item-content>
+                        <v-list-item-title>Vitas</v-list-item-title>
+                        <v-list-item-subtitle>10 Hours of vitas</v-list-item-subtitle>
+                    </v-list-item-content>
+                </v-list-item>
+                <v-divider></v-divider>
+                <v-list-item>
+                    <v-list-item-avatar tile>
+                        <v-img src="./assets/Igor.png"></v-img>
+                    </v-list-item-avatar>
+
+                    <v-list-item-content>
+                        <v-list-item-title>Vitas</v-list-item-title>
+                        <v-list-item-subtitle>10 Hours of vitas</v-list-item-subtitle>
+                    </v-list-item-content>
+                </v-list-item>
+                <v-divider></v-divider>
                 <v-list-item>
                     <v-list-item-avatar tile>
                         <v-img src="./assets/Igor.png"></v-img>
