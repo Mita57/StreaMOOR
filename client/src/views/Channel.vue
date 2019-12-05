@@ -16,7 +16,7 @@
                 Записи
             </v-tab>
             <v-divider></v-divider>
-                <v-btn class="success mt-2" tile>Подписаться</v-btn>
+            <v-btn class="success mt-2" tile>Подписаться</v-btn>
             <v-tab disabled>Подписчиков: 1337228</v-tab>
         </v-tabs>
         <!--chat-->
@@ -30,17 +30,20 @@
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
-        <v-responsive :aspect-ratio="16/9" class=" ma-8 mt-2">
-            <v-img src="../assets/pic1.jpg"></v-img>
+        <v-responsive :aspect-ratio="16/9" class=" ma-8 mt-2 white">
         </v-responsive>
-        <div class="ml-10 mt-n6 flex-row justify-space-around">
-            <div>
-                Just usual meme review like pewds did
-            </div>
-            <div>
-                asdfsdsf
-            </div>
-        </div>
+        <v-container fluid>
+            <v-layout wrap justify-space-around="" class="ml-5 mt-n10">
+                <v-flex>
+                    <div>
+                        Just usual meme review like pewds did
+                    </div>
+                    <div>
+                        asdfsdsf
+                    </div>
+                </v-flex>
+            </v-layout>
+        </v-container>
     </v-container>
 </template>
 

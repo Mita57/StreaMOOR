@@ -11,7 +11,7 @@
             <v-toolbar-items class="ml-4">
                 <v-btn text class=" white--text" to="/hubs">Хабы</v-btn>
                 <v-btn text class=" white--text" to="/info">Инофрмация</v-btn>
-                <v-btn text class=" white--text" to="/account">Помощь</v-btn>
+                <v-btn text class=" white--text" to="/account">Помогите</v-btn>
             </v-toolbar-items>
             <v-spacer></v-spacer>
             <v-toolbar-items>
