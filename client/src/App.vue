@@ -40,6 +40,8 @@
                         </v-list>
 
                         <v-card-actions>
+
+                            <v-btn text to="/register">Зарегестрироваться</v-btn>
                             <v-spacer></v-spacer>
                             <v-btn text @click="menu = false">Отмена</v-btn>
                             <v-btn color="primary" text @click="menu = false">Вход</v-btn>
