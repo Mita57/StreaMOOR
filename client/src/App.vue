@@ -15,7 +15,16 @@
             </v-toolbar-items>
             <v-spacer></v-spacer>
             <v-toolbar-items>
-                    <v-btn text class="white--text" @click="" v-on="on" id="cock">Войти</v-btn>
+                <v-menu>
+                    <template v-slot:activator="{ on }">
+                        <v-btn text class="white--text" @click="" v-on="on" id="cock">Войти</v-btn>
+                    </template>
+                    <v-list>
+                        <v-list-item v-for="i in 10">
+                            <v-list-item-title>MEMES</v-list-item-title>
+                        </v-list-item>
+                    </v-list>
+                </v-menu>
             </v-toolbar-items>
         </v-app-bar>
 
