@@ -1,5 +1,12 @@
 module.exports = {
-  "transpileDependencies": [
-    "vuetify"
-  ]
-}
+    "transpileDependencies": [
+        "vuetify"
+    ]
+};
+    module.rules = {
+      test: /\.(html)$/,
+      exclude: /(node_modules)/,
+      use: {
+        loader: "html-loader"
+      }
+    };

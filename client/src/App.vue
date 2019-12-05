@@ -15,11 +15,11 @@
             </v-toolbar-items>
             <v-spacer></v-spacer>
             <v-toolbar-items>
-                <v-menu>
+                <v-menu close-on-content-click="false">
                     <template v-slot:activator="{ on }">
                         <v-btn text class="white--text" @click="" v-on="on" id="cock">Войти</v-btn>
                     </template>
-                    <v-card style="width: 500px">
+                    <v-card>
                         <v-list>
                             <v-list-item>
                                 <v-list-item-content>
@@ -40,7 +40,6 @@
                         </v-list>
 
                         <v-card-actions>
-
                             <v-btn text to="/register">Зарегестрироваться</v-btn>
                             <v-spacer></v-spacer>
                             <v-btn text @click="menu = false">Отмена</v-btn>
