@@ -15,7 +15,7 @@
             </v-toolbar-items>
             <v-spacer></v-spacer>
             <v-toolbar-items>
-                <v-menu close-on-content-click="false">
+                <v-menu :close-on-content-click='false'>
                     <template v-slot:activator="{ on }">
                         <v-btn text class="white--text" @click="" v-on="on" id="cock">Войти</v-btn>
                     </template>

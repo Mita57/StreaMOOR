@@ -293,7 +293,7 @@ function create() {
 
 
 function update() {
-    
+
     if (gameOver || !gameStarted)
         return;
     if (framesMoveUp > 0)
@@ -485,3 +485,6 @@ function startGame(scene) {
     score0.setDepth(20);
     makePipes(scene);
 }
+
+export default create;
+export {create}

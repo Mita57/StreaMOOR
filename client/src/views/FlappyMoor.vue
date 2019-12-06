@@ -1,22 +1,38 @@
 <template>
-    <div id="sas">
+    <div :id="containerId" v-if="downloaded" />
+    <div class="placeholder" v-else>
+        Downloading ...
     </div>
 </template>
 
+
 <script>
-    export default{
-        name: "FlappyMoor",
-        mounted(){
-            let phaserScript = document.createElement('script');
-            phaserScript.setAttribute('src', '//cdn.jsdelivr.net/npm/phaser@3.21.0/dist/phaser.js');
-            document.head.appendChild(phaserScript);
-            let gameScript = document.createElement('script');
-            gameScript.setAttribute('src', '../../flappyMoor/js/script.js');
-            document.head.appendChild(gameScript);
+    export default {
+        name: 'Game',
+        data() {
+            return {
+                downloaded: false,
+                gameInstance: null,
+                containerId: 'game-container'
+            }
         },
+        async mounted() {
+            const game = await import("@/flappyMoor/js");
+            this.downloaded = true;
+            this.$nextTick(() => {
+                this.gameInstance = game.launch(this.containerId);
+            })
+        },
+        destroyed() {
+            this.gameInstance.destroy(false);
+        }
     }
 </script>
 
-<style scoped>
 
+<style lang="scss" scoped>
+    .placeholder {
+        font-size: 2rem;
+        font-family: 'Courier New', Courier, monospace;
+    }
 </style>
