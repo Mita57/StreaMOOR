@@ -1,4 +1,5 @@
 from .BasicModel import BasicModel
+from .users import User
 
 
 class Subsctiption(BasicModel):
@@ -22,6 +23,7 @@ class Subsctiption(BasicModel):
         adds the subscription info to the database
         """
         BasicModel.insert(Subsctiption, values=[self.user, self.subscribe_to])
+        User.update_by_attrs('subs', 'subs + 1', 'nickname', self.subscribe_to)
 
     def unsubscribe(self):
         """
@@ -29,3 +31,4 @@ class Subsctiption(BasicModel):
         :return:
         """
         BasicModel.delete_by_attrs(Subsctiption, values=[self.user, self.subscribe_to])
+        User.update_by_attrs('subs', 'subs - 1', 'nickname', self.subscribe_to)

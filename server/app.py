@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
-from flask_cors import CORS
-from .models import SQLModel
+from models import SQLModel
+from models.subscriptions import Subsctiption
 import datetime
 import asyncio
 
@@ -43,6 +43,26 @@ async def register():
         SQLModel.insert((post_data.get('nickname'), post_data.get('email'), post_data.get('password'), None,
                          date, None, post_data.get('birthDate'), 'user', False))
         return jsonify(info='Регистрация прошла успешно')
+
+
+@app.route('/unsubscribe', methods=['POST'])
+async def unsub():
+    """
+    Unsubscribes the user from channel
+    """
+    post_data = await request.get_json()
+    Subsctiption.unsubscribe(post_data.get('from'))
+
+
+@app.route('/subscribe', methods=['POST'])
+async def unsubscribe():
+    """
+    Subscribes the user to the channel
+    """
+    post_data = await request.get_json()
+    Subsctiption.subscribe(post_data.get('from'))
+
+
 
 
 if __name__ == '__main__':
