@@ -1,10 +1,12 @@
 from flask import Flask, jsonify, request
 from models import SQLModel
 from models.subscriptions import Subsctiption
+from models.users import User
+from flask_cors import CORS
 import datetime
-import asyncio
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/')
@@ -20,6 +22,7 @@ async def login():
     Returns: JSON with auth result info
     """
     post_data = await request.get_json()
+    print('cock')
     user = SQLModel.get_by_attrs('email, password', 'email', (post_data.get('email')))
     if post_data.get('pwrd') == user[0][1]:
         return jsonify(style='color:lightgreen', info='Вход выполнен', flag=True)
@@ -28,14 +31,14 @@ async def login():
 
 
 @app.route('/register', methods=['POST'])
-async def register():
+def register():
     """
     Inserts the information about new user unto the database
 
     Returns:
         JSON with the result
     """
-    post_data = await request.get_json()
+    post_data = request.get_json()
     if SQLModel.get_by_attrs('email, password', 'email', (post_data.get('email'))):
         return jsonify(info='Данный пользователь уже зарегестрирован')
     else:
@@ -46,23 +49,32 @@ async def register():
 
 
 @app.route('/unsubscribe', methods=['POST'])
-async def unsub():
+def unsubscribe():
     """
     Unsubscribes the user from channel
     """
-    post_data = await request.get_json()
+    post_data = request.get_json()
     Subsctiption.unsubscribe(post_data.get('from'))
 
 
 @app.route('/subscribe', methods=['POST'])
-async def unsubscribe():
+def subscribe():
     """
     Subscribes the user to the channel
     """
-    post_data = await request.get_json()
+    post_data = request.get_json()
     Subsctiption.subscribe(post_data.get('from'))
 
 
+@app.route('/channels')
+def get_channels():
+    """
+    Gets the channels that are in the hub selected
+    Returns:
+        JSON with the channels
+    """
+    users = User.get_by_attrs('*', ' online', True)
+    return jsonify(users)
 
 
 if __name__ == '__main__':

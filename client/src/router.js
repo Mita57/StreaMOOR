@@ -6,7 +6,6 @@ import Hubs from "@/views/Hubs";
 import Register from "@/views/Register";
 import Channels from "@/views/Channels";
 import Channel from "@/views/Channel"
-import FlappyMoor from "@/views/FlappyMoor"
 
 Vue.use(Router);
 
@@ -42,11 +41,6 @@ const router = new Router({
       name: 'Channel',
       component: Channel
     },
-    {
-      path:'/flappyMoor',
-      name:'FlappyMoor',
-      component: FlappyMoor
-    }
 
   ],
   mode: 'history'

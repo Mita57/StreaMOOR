@@ -8,7 +8,7 @@ class User(BasicModel):
     _USER = 'root'
     _PASSWORD = 'MOORMOOR'
     _HOST = '127.0.0.1'
-
+    _PORT = '5432'
     nickname: str
     join_date: datetime
     password: str
@@ -19,6 +19,7 @@ class User(BasicModel):
     birth_date: datetime
     status: str
     banned: bool
+    streaming: bool
     online: bool
     curr_hub: str
 
@@ -33,6 +34,7 @@ class User(BasicModel):
         'birth_date': datetime,
         'status': str,
         'banned': bool,
+        'streaming': bool,
         'online': bool,
         'curr_hub': str
     }

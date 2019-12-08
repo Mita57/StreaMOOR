@@ -1,29 +1,51 @@
 <template>
     <v-container fluid grid-list-xl>
         <v-layout wrap justify-space-around>
-            <v-flex v-for="i in 20">
-                <v-card class="mx-auto" max-width="344" outlined tile>
-                    <v-list-item three-line>
-                        <v-list-item-content>
-                            <div class="overline mb-4">OVERLINE</div>
-                            <v-list-item-title class="headline mb-1">Headline 5</v-list-item-title>
-                            <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
-                        </v-list-item-content>
+            <v-flex v-for="channel in channels">
+                <router-link to="/channel">
+                    <v-card class="mx-auto" max-width="344" outlined tile>
+                        <v-list-item three-line>
+                            <v-list-item-content>
+                                <div class="overline mb-4">channel.nickname</div>
+                                <v-list-item-title class="headline mb-1">channel.hub</v-list-item-title>
+                                <v-list-item-subtitle>channel.desc
+                                </v-list-item-subtitle>
+                            </v-list-item-content>
 
-                        <v-list-item-avatar tile size="80" color="grey"></v-list-item-avatar>
-                    </v-list-item>
-                    <v-card-actions>
-                    </v-card-actions>
-                </v-card>
+                            <v-list-item-avatar tile size="80" color="grey"></v-list-item-avatar>
+                        </v-list-item>
+                        <v-card-actions>
+                        </v-card-actions>
+                    </v-card>
+                </router-link>
             </v-flex>
         </v-layout>
     </v-container>
 </template>
 
 <script>
+    import axios from 'axios';
     export default {
-        name: "Channels"
+        name: "Channels",
+        data() {
+            return {
+                channels: [],
+            }
+        },
+        methods: {
+            getChannels() {
+                const path = 'http://localhost:5000/channels';
+                axios.get(path)
+                    .then((res) => {
+                        this.channels = res.data;
+                    })
+            },
+        },
+        created() {
+            this.getChannels();
+        }
     }
+
 </script>
 
 <style scoped>
