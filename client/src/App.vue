@@ -17,7 +17,7 @@
             <v-toolbar-items>
                 <v-menu  :close-on-content-click='false'>
                     <template v-slot:activator="{ on }">
-                        <v-btn text class="white--text" @click="loginValidation()" v-on="on" id="cock">{{nickname}}</v-btn>
+                        <v-btn text class="white--text"  v-on="on" id="cock">{{nickname}}</v-btn>
                     </template>
                     <v-card v-model="menu">
                         <v-list>
@@ -45,7 +45,7 @@
                             <v-btn text to="/register" @click="menu=false">Зарегестрироваться</v-btn>
                             <v-spacer></v-spacer>
                             <v-btn text @click="menu=false">Отмена</v-btn>
-                            <v-btn color="primary" text @click="menu=false">Вход</v-btn>
+                            <v-btn color="primary" text @click="menu=false, loginValidation()"">Вход</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-menu>
@@ -96,9 +96,17 @@
                 let emailFlag = false;
                 if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById('email').value)){
                     emailFlag = true;
+                    document.getElementById('password').style.backgroundColor = '#424242';
+                }
+                else{
+                    document.getElementById('email').style.backgroundColor = 'darkred';
                 }
                 if(document.getElementById('password').value.length > 4){
                     passwordFlag = true;
+                    document.getElementById('password').style.backgroundColor = '#424242';
+                }
+                else{
+                    document.getElementById('password').style.backgroundColor = 'darkred';
                 }
 
 
@@ -106,8 +114,22 @@
                     login();
                 }
 
-                function login() {
-
+                async function login() {
+                    let formData = new FormData();
+                    formData.set('email', document.getElementById('email').value);
+                    formData.set('password', document.getElementById('pasword').value);
+                    await axios({
+                        method : 'post',
+                        url : 'localhost:5000/login',
+                        data : formData
+                    }).then(function (response) {
+                        this.nickname = response.data.nickname;
+                    })
+                        .catch(function (response) {
+                            //handle error
+                            console.log(response);
+                            alert('Kernel panic: not sycning')
+                        })
                 }
 
             },

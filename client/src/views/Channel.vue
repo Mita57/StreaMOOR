@@ -17,7 +17,7 @@
             </v-tab>
             <v-divider></v-divider>
             <v-btn class="success mt-2" tile>Подписаться</v-btn>
-            <v-tab disabled>Подписчиков: 1337228</v-tab>
+            <v-tab disabled>Подписчиков: {{subscibers}}</v-tab>
         </v-tabs>
         <!--chat-->
         <v-navigation-drawer app clipped right>
@@ -33,26 +33,50 @@
         <v-responsive :aspect-ratio="16/9" class=" ma-8 mt-2 white">
         </v-responsive>
         <v-container fluid>
-            <v-layout wrap justify-space-around="" class="ml-5 mt-n10">
+            <v-layout wrap  class="ml-5 mt-n8">
                 <v-flex>
                     <div>
-                        Just usual meme review like pewds did
-                    </div>
-                    <div>
-                        asdfsdsf
+                        <div>
+                            {{desc}}
+                        </div>
+                        <div>
+                            {{hub}}
+                        </div>
                     </div>
                 </v-flex>
+                <div class="mr-5 viewers">
+                    {{viewers}}
+                </div>
             </v-layout>
         </v-container>
     </v-container>
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
-        name: "Channel"
+        name: "Channel",
+        data() {
+            return {
+                nickname: 'Cuberian',
+                subscibers: 1337228,
+                desc:'Учимся пользоваться гитом с Игорешей',
+                hub:'Наука и обучение',
+                viewers: 228
+            }
+        },
+        methods: {},
+        created() {
+            this.getChannels();
+            this.getName();
+        }
     }
+
 </script>
 
 <style scoped>
-
+.viewers{
+    color:dodgerblue;
+}
 </style>
