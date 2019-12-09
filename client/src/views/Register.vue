@@ -8,8 +8,7 @@
         <v-menu ref="menu1" v-model="menu1" :close-on-content-click="false"
                 transition="scale-transition" offset-y full-width max-width="290px" min-width="290px">
             <template v-slot:activator="{ on }">
-                <v-text-field
-                        v-model="birth_day"
+                <v-text-field v-model="birth_day"
                         label="Дата рождения"
                         hint="MM/DD/YYYY format"
                         persistent-hint

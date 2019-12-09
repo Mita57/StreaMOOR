@@ -5,7 +5,7 @@
             <v-tabs-slider></v-tabs-slider>
             <v-tab href="" class="flex-row">
                 <img src="../assets/Igor.png" class="mr-2 ml-n2 mt-1" height="40px">
-                Vitas
+                {{nickname}}
             </v-tab>
 
             <v-tab href="">
@@ -29,6 +29,9 @@
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
+            <div class="">
+                <v-text-field type="text" placeholder="Сообщение"  class="sas pa-2 mb-n4"></v-text-field>
+            </div>
         </v-navigation-drawer>
         <v-responsive :aspect-ratio="16/9" class=" ma-8 mt-2 white">
         </v-responsive>
@@ -66,10 +69,21 @@
                 viewers: 228
             }
         },
-        methods: {},
+        methods: {
+            async getInfo(){
+                let name = capitalize(window.location.href.split('/')[5]);
+                await axios.get('localhost:5000/channel', {name: name}).then((res) => {
+                    this.nickname = res.data.nickname;
+                    this.subscibers = res.data.subs;
+                    this.desc = res.data.desc;
+                    this.hub = res.data.hub;
+                    this.viewers = res.data.viewers;
+                })
+
+            }
+        },
         created() {
-            this.getChannels();
-            this.getName();
+            this.getInfo();
         }
     }
 
@@ -79,4 +93,9 @@
 .viewers{
     color:dodgerblue;
 }
+.sas{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+ }
 </style>

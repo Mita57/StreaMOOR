@@ -16,6 +16,7 @@ class User(BasicModel):
     subs: int
     email: str
     description: str
+    viewers: int
     birth_date: datetime
     status: str
     banned: bool
@@ -35,6 +36,7 @@ class User(BasicModel):
         'status': str,
         'banned': bool,
         'streaming': bool,
+        'viewers': int,
         'online': bool,
         'curr_hub': str
     }

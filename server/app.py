@@ -76,6 +76,15 @@ def get_channels():
     users = User.get_by_attrs('*', ' online', True)
     return jsonify(users)
 
+@app.route('/channel')
+def get_channel:
+    """
+    gets the channel info from the database and returns info about it
+    Returns:
+        KSON with channel info
+    """
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
