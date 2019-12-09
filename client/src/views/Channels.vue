@@ -1,8 +1,9 @@
 <template>
     <v-container fluid grid-list-xl>
+        <h1>{{name}}</h1>
         <v-layout wrap justify-space-around>
-            <v-flex v-for="channel in channels">
-                <router-link to="/channel">
+            <v-flex v-for="chanel in channels">
+                <router-link :to="channel/channel.nickname">
                     <v-card class="mx-auto" max-width="344" outlined tile>
                         <v-list-item three-line>
                             <v-list-item-content>
@@ -30,6 +31,7 @@
         data() {
             return {
                 channels: [],
+                name
             }
         },
         methods: {
@@ -40,9 +42,19 @@
                         this.channels = res.data;
                     })
             },
+            getName(){
+                let url = window.location.href;
+                const capitalize = (s) => {
+                    if (typeof s !== 'string') return ''
+                    return s.charAt(0).toUpperCase() + s.slice(1)
+                }
+                this.name = capitalize(url.split('/')[4]);
+            }
+
         },
         created() {
             this.getChannels();
+            this.getName();
         }
     }
 

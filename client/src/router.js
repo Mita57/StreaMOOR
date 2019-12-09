@@ -31,7 +31,7 @@ const router = new Router({
       component:Register
     },
     {
-      path: '/channels',
+      path: '/channels/:id',
       name:'Channels',
       component:Channels
     }

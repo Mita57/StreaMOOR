@@ -15,11 +15,11 @@
             </v-toolbar-items>
             <v-spacer></v-spacer>
             <v-toolbar-items>
-                <v-menu :close-on-content-click='false'>
+                <v-menu  :close-on-content-click='false'>
                     <template v-slot:activator="{ on }">
-                        <v-btn text class="white--text" @click="" v-on="on" id="cock">Войти</v-btn>
+                        <v-btn text class="white--text" @click="loginValidation()" v-on="on" id="cock">{{nickname}}</v-btn>
                     </template>
-                    <v-card>
+                    <v-card v-model="menu">
                         <v-list>
                             <v-list-item>
                                 <v-list-item-content>
@@ -32,20 +32,20 @@
 
                         <v-list>
                             <v-list-item>
-                                <v-text-field type="text" v-model="email" placeholder="Адрес электронной почты"><br>
+                                <v-text-field type="text" id="email" v-model="email" placeholder="Адрес электронной почты"><br>
                                 </v-text-field>
                             </v-list-item>
                             <v-list-item>
-                                <v-text-field type="password" v-model="password" placeholder="Пароль"><br>
+                                <v-text-field type="password" id="password" v-model="password" placeholder="Пароль"><br>
                                 </v-text-field>
                             </v-list-item>
                         </v-list>
 
                         <v-card-actions>
-                            <v-btn text to="/register">Зарегестрироваться</v-btn>
+                            <v-btn text to="/register" @click="menu=false">Зарегестрироваться</v-btn>
                             <v-spacer></v-spacer>
-                            <v-btn text @click="menu = false">Отмена</v-btn>
-                            <v-btn color="primary" text @click="menu = false">Вход</v-btn>
+                            <v-btn text @click="menu=false">Отмена</v-btn>
+                            <v-btn color="primary" text @click="menu=false">Вход</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-menu>
@@ -83,8 +83,35 @@
 
     export default {
         name: 'App',
-        data: () => ({}),
-        methods: {}
+        data() {
+            return {
+                nickname: 'Войти',
+                channels: [],
+            }
+        },
+        methods: {
+            loginValidation(){
+                //input validation
+                let passwordFlag  = false;
+                let emailFlag = false;
+                if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById('email').value)){
+                    emailFlag = true;
+                }
+                if(document.getElementById('password').value.length > 4){
+                    passwordFlag = true;
+                }
+
+
+                if(passwordFlag && emailFlag){
+                    login();
+                }
+
+                function login() {
+
+                }
+
+            },
+        }
     };
 </script>
 

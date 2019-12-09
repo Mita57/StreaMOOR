@@ -2,7 +2,7 @@
     <div id="land">
         <v-container>
             <v-col cols="12">
-                <router-link to="/channels">
+                <router-link to="channels/gaming">
                     <v-card dark class="mt-1" :ripple="true" :hover="true" tile>
                         <div class="d-flex flex-no-wrap justify-space-between">
                             <div>
@@ -14,7 +14,7 @@
                         </div>
                     </v-card>
                 </router-link>
-                <router-link to="/channels">
+                <router-link to="/channels/creative">
                     <v-card dark class="mt-1" :ripple="true" :hover="true" tile>
                         <div class="d-flex flex-no-wrap justify-space-between">
                             <div>
@@ -26,7 +26,7 @@
                         </div>
                     </v-card>
                 </router-link>
-                <router-link to="/channels">
+                <router-link to="/channels/podcasts">
                     <v-card dark class="mt-1" :ripple="true" :hover="true"  tile>
                         <div class="d-flex flex-no-wrap justify-space-between">
                             <div>
@@ -38,7 +38,7 @@
                         </div>
                     </v-card>
                 </router-link>
-                <router-link to="/channels">
+                <router-link to="/channels/science">
                     <v-card dark class="mt-1" :ripple="true" :hover="true" tile>
                         <div class="d-flex flex-no-wrap justify-space-between">
                             <div>
@@ -50,7 +50,7 @@
                         </div>
                     </v-card>
                 </router-link>
-                <router-link to="/channels">
+                <router-link to="/channels/irl">
                     <v-card dark class="mt-1" :ripple="true" :hover="true" tile>
                         <div class="d-flex flex-no-wrap justify-space-between">
                             <div>
@@ -62,7 +62,7 @@
                         </div>
                     </v-card>
                 </router-link>
-                <router-link to="/channels">
+                <router-link to="/channels/etc">
                     <v-card dark class="mt-1" :ripple="true" :hover="true" tile>
                         <div class="d-flex flex-no-wrap justify-space-between">
                             <div>
