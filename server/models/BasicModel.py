@@ -7,6 +7,7 @@ class AbstractClassError(Exception):
 
 
 class SQLModel:
+    _TABLE = None
     _DATABASE = None
     _USER = None
     _PASSWORD = None
@@ -56,11 +57,12 @@ class SQLModel:
         values_query = ''
         for X in values:
             values_query += X + ','
-        with closing(psycopg2.connect()) as conn:
+        with closing(psycopg2.connect(database='streamoor', user='postgres', password='3395925000',
+                                      host='127.0.0.1', port='5432')) as conn:
             with conn.cursor() as cursor:
-                sql_insert_query = """INSERT INTO %s VALUES (%s) """
-                cursor.execute(sql_insert_query, cls._TABLE, values_query)
-                cur.commit()
+                sql_insert_query = """INSERT INTO {} VALUES (%s) """.format(cls._TABLE)
+                cursor.execute(sql_insert_query, values_query)
+                conn.commit()
 
     @classmethod
     def get_by_attrs(cls, cols, attr_cols, attr_values, group_by=None, order_by=None):
@@ -77,26 +79,26 @@ class SQLModel:
             returns:
                 query result as a dictionary
         """
-        with closing(psycopg2.connect()) as conn:
+        with closing(psycopg2.connect(database='streamoor', user='postgres', password='3395925000',
+                                      host='127.0.0.1', port='5432')) as conn:
             with conn.cursor() as cursor:
-                if group_by is None and sorted_by is None:
-                    sql_select_query = """SELECT %s FROM %s WHERE %s=%s """
-                    cursor.execute(sql_select_query, cols, cls._TABLE, attr_cols, attr_values)
+                if group_by is None and order_by is None:
+                    sql_select_query = """SELECT %s FROM {} WHERE %s=%s """.format(cls._TABLE)
+                    cursor.execute(sql_select_query, (cols, attr_cols, attr_values))
                     value = cursor.fectchall()
                     return value
-                if group_by is not None and sorted_by is None:
-                    sql_select_query = """SELECT %s FROM %s WHERE %s=%s GROUP BY %s"""
-                    cursor.execute(sql_select_query, cols, cls._TABLE, attr_cols, attr_values, group_by)
+                if group_by is not None and order_by is None:
+                    sql_select_query = """SELECT %s FROM {} WHERE %s=%s GROUP BY {}""".format(cls._TABLE, group_by)
                     value = cursor.fectchall()
                     return value
-                if group_by is None and sorted_by is not None:
-                    sql_select_query = """SELECT %s FROM %s WHERE %s=%s ORDER BY %s"""
-                    cursor.execute(sql_select_query, cols, cls._TABLE, attr_cols, attr_values, order_by)
+                if group_by is None and order_by is not None:
+                    sql_select_query = ("""SELECT %s FROM {} WHERE %s=%s ORDER BY {}""").format(cls._TABLE, order_by)
+                    cursor.execute(sql_select_query, (cols, attr_cols, attr_values))
                     value = cursor.fectchall()
                     return value
                 else:
-                    sql_select_query = """SELECT %s FROM %s WHERE %s=%s GROUP BY %S ORDER BY %s"""
-                    cursor.execute(sql_select_query, cols, cls._TABLE, attr_cols, attr_values, group_by, order_by)
+                    sql_select_query = """SELECT %s FROM {} WHERE %s=%s GROUP BY {} ORDER BY {}""".format(cls._TABLE, group_by, order_by)
+                    cursor.execute(sql_select_query, (cols, cls._TABLE, attr_cols, attr_values, group_by, order_by))
                     value = cursor.fectchall()
                     return value
 
@@ -111,10 +113,11 @@ class SQLModel:
                 attr_cols: columns that will be used in the WHERE statement : list
                 attr_values: values that will be used in the WHERE statement according to the attr_cols : list
         """
-        with closing(psycopg2.connect()) as conn:
+        with closing(psycopg2.connect(database='streamoor', user='postgres', password='3395925000',
+                                      host='127.0.0.1', port='5432')) as conn:
             with conn.cursor() as cursor:
-                sql_update_query = """UPDATE %s SET %s=%s WHERE %s=%s"""
-                cursor.execute(sql_update_query, cls._TABLE, columns, values, attr_cols, attr_values)
+                sql_update_query = """UPDATE {} SET %s=%s WHERE %s=%s""".format(cls._TABLE)
+                cursor.execute(sql_update_query, (cls._TABLE, columns, values, attr_cols, attr_values))
 
     @classmethod
     def delete_by_attrs(cls, attr_cols, attr_values):
@@ -125,10 +128,11 @@ class SQLModel:
                 attr_cols: columns that will be used in the WHERE statement : list
                 attr_values: values that will be used in the WHERE statement according to the attr_cols : list
         """
-        with closing(psycopg2.connect()) as conn:
+        with closing(psycopg2.connect(database='streamoor', user='postgres', password='3395925000',
+                                      host='127.0.0.1', port='5432')) as conn:
             with conn.cursor() as cursor:
-                sql_delete_query = """DELETE FROM %s where %s=%s"""
-                cursor.execute(sql_delete_query, cls._TABLE, attr_cols, attr_values)
+                sql_delete_query = """DELETE FROM {} where %s=%s""".format(cls._TABLE)
+                cursor.execute(sql_delete_query, (cls._TABLE, attr_cols, attr_values))
 
 
 class BasicModel(SQLModel):

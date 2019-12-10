@@ -83,7 +83,7 @@ def get_channel():
     """
     gets the channel info from the database and returns info about it
     Returns:
-        KSON with channel info
+        JSON with channel info
     """
     pass
 
