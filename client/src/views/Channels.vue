@@ -3,20 +3,15 @@
         <h1>{{name}}</h1>
         <v-layout wrap justify-space-around>
             <v-flex v-for="chanel in channels">
-                <router-link :to="channel/channel.nickname">
+                <router-link :to="chanel[0]">
                     <v-card class="mx-auto" max-width="344" outlined tile>
                         <v-list-item three-line>
                             <v-list-item-content>
-                                <div class="overline mb-4">channel.nickname</div>
-                                <v-list-item-title class="headline mb-1">channel.hub</v-list-item-title>
-                                <v-list-item-subtitle>channel.desc
-                                </v-list-item-subtitle>
+                                <div class="overline mb-4">{{chanel[0]}}</div>
+                                <v-list-item-title class="headline mb-1">{{chanel[2]}}</v-list-item-title>
                             </v-list-item-content>
-
                             <v-list-item-avatar tile size="80" color="grey"></v-list-item-avatar>
                         </v-list-item>
-                        <v-card-actions>
-                        </v-card-actions>
                     </v-card>
                 </router-link>
             </v-flex>
@@ -26,6 +21,7 @@
 
 <script>
     import axios from 'axios';
+
     export default {
         name: "Channels",
         data() {
@@ -42,7 +38,7 @@
                         console.log(res.data)
                     })
             },
-            getName(){
+            getName() {
                 let url = window.location.href;
                 const capitalize = (s) => {
                     if (typeof s !== 'string') return '';

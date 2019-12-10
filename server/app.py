@@ -74,7 +74,8 @@ def get_channels():
         JSON with the channels
     """
     hub = request.args.get('hub')
-    users = User.get_by_attrs(cols=('nickname,', 'hub', 'desc'), attr_cols='hub', attr_values=hub, order_by='subs')
+    users = User.get_by_attrs(cols=('nickname', 'curr_hub', 'description'), attr_cols='curr_hub', attr_values=hub, order_by='subs')
+    print(jsonify(users))
     return jsonify(users)
 
 
