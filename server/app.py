@@ -73,16 +73,19 @@ def get_channels():
     Returns:
         JSON with the channels
     """
-    users = User.get_by_attrs('*', ' online', True)
+    hub = request.args.get('hub')
+    users = User.get_by_attrs(cols=('nickname,', 'hub', 'desc'), attr_cols='hub', attr_values=hub, order_by='subs')
     return jsonify(users)
 
+
 @app.route('/channel')
-def get_channel:
+def get_channel():
     """
     gets the channel info from the database and returns info about it
     Returns:
         KSON with channel info
     """
+    pass
 
 
 

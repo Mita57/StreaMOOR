@@ -3,7 +3,7 @@ from .users import User
 
 
 class Subsctiption(BasicModel):
-    _DATABASE = 'streamoor.db'
+    _DATABASE = 'streamoor'
     _TABLE = 'subscriptions'
     _USER = 'root'
     _PASSWORD = 'MOORMOOR'

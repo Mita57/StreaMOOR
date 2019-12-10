@@ -3,7 +3,7 @@ from .BasicModel import BasicModel
 
 
 class User(BasicModel):
-    _DATABASE = 'streamoor.db'
+    _DATABASE = 'streamoor'
     _USER = 'postgres'
     _PASSWORD = '3395925000'
     _HOST = '127.0.0.1'

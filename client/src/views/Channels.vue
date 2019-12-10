@@ -35,11 +35,11 @@
             }
         },
         methods: {
-            getChannels() {
-                const path = 'http://localhost:5000/channels';
-                axios.get(path)
+            async getChannels() {
+                await axios.get('http://localhost:5000/channels?hub=' + window.location.href.split('/')[4])
                     .then((res) => {
                         this.channels = res.data;
+                        console.log(res.data)
                     })
             },
             getName(){
