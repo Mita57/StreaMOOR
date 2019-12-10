@@ -15,9 +15,9 @@
             </v-toolbar-items>
             <v-spacer></v-spacer>
             <v-toolbar-items>
-                <v-menu  :close-on-content-click='false'>
+                <v-menu :close-on-content-click='false'>
                     <template v-slot:activator="{ on }">
-                        <v-btn text class="white--text"  v-on="on" id="cock">{{nickname}}</v-btn>
+                        <v-btn text class="white--text" v-on="on" id="cock">{{user}}</v-btn>
                     </template>
                     <v-card v-model="menu">
                         <v-list>
@@ -32,7 +32,8 @@
 
                         <v-list>
                             <v-list-item>
-                                <v-text-field type="text" id="email" v-model="email" placeholder="Адрес электронной почты"><br>
+                                <v-text-field type="text" id="email" v-model="email"
+                                              placeholder="Адрес электронной почты"><br>
                                 </v-text-field>
                             </v-list-item>
                             <v-list-item>
@@ -45,7 +46,8 @@
                             <v-btn text to="/register" @click="menu=false">Зарегестрироваться</v-btn>
                             <v-spacer></v-spacer>
                             <v-btn text @click="menu=false">Отмена</v-btn>
-                            <v-btn color="primary" text @click="menu=false, loginValidation()"">Вход</v-btn>
+                            <v-btn color="primary" text @click="menu=false, loginValidation()"
+                            ">Вход</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-menu>
@@ -59,14 +61,14 @@
                 <v-divider></v-divider>
                 <v-list-item v-for="i in 20">
                     <router-link to="/channel">
-                    <v-list-item-avatar class="sas" tile>
-                        <v-img src="./assets/Igor.png" class=""></v-img>
-                    </v-list-item-avatar>
-                    <v-list-item-content>
-                        <v-list-item-title>Игорь</v-list-item-title>
-                        <v-list-item-subtitle>Учимся пользоваться гитом</v-list-item-subtitle>
-                        <v-list-item-subtitle>Креатив</v-list-item-subtitle>
-                    </v-list-item-content>
+                        <v-list-item-avatar class="sas" tile>
+                            <v-img src="./assets/Igor.png" class=""></v-img>
+                        </v-list-item-avatar>
+                        <v-list-item-content>
+                            <v-list-item-title>Игорь</v-list-item-title>
+                            <v-list-item-subtitle>Учимся пользоваться гитом</v-list-item-subtitle>
+                            <v-list-item-subtitle>Креатив</v-list-item-subtitle>
+                        </v-list-item-content>
                     </router-link>
                 </v-list-item>
             </v-list>
@@ -85,32 +87,32 @@
         name: 'App',
         data() {
             return {
-                nickname: 'Войти',
+                user: 'Войти',
                 channels: [],
             }
         },
         methods: {
-            loginValidation(){
+            loginValidation() {
                 //input validation
-                let passwordFlag  = false;
+                let passwordFlag = false;
                 let emailFlag = false;
-                if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById('email').value)){
+                if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById('email').value)) {
                     emailFlag = true;
-                    document.getElementById('password').style.backgroundColor = '#424242';
-                }
-                else{
+                    document.getElementById('email').style.backgroundColor = '#424242';
+                } else {
                     document.getElementById('email').style.backgroundColor = 'darkred';
+                    emailFlag = false;
                 }
-                if(document.getElementById('password').value.length > 4){
+                if (document.getElementById('password').value.length > 4) {
                     passwordFlag = true;
                     document.getElementById('password').style.backgroundColor = '#424242';
-                }
-                else{
+                } else {
                     document.getElementById('password').style.backgroundColor = 'darkred';
+                    passwordFlag = false;
                 }
 
 
-                if(passwordFlag && emailFlag){
+                if (passwordFlag && emailFlag) {
                     login();
                 }
 
@@ -119,9 +121,9 @@
                     formData.set('email', document.getElementById('email').value);
                     formData.set('password', document.getElementById('pasword').value);
                     await axios({
-                        method : 'post',
-                        url : 'localhost:5000/login',
-                        data : formData
+                        method: 'post',
+                        url: 'localhost:5000/login',
+                        data: formData
                     }).then(function (response) {
                         this.nickname = response.data.nickname;
                     })
@@ -138,7 +140,7 @@
 </script>
 
 <style>
-    a{
+    a {
         text-decoration: none;
         color: white;
     }

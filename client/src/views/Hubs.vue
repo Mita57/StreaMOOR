@@ -3,19 +3,19 @@
         <v-container>
             <v-col cols="12">
                 <router-link to="channels/gaming">
-                    <v-card dark class="mt-1" :ripple="true" :hover="true" tile>
+                    <v-card dark class="mt-1 v-btn" color="#505050" :ripple="true" :hover="true" tile>
                         <div class="d-flex flex-no-wrap justify-space-between">
                             <div>
                                 <v-card-title class="headline">Гейминг</v-card-title>
                             </div>
-                            <v-avatar class="ma-3" height="60" width="90" tile>
+                            <v-avatar class="ma-3 v-btn" height="60" width="90" tile>
                                 <v-img src="../assets/gamingHub.png"></v-img>
                             </v-avatar>
                         </div>
                     </v-card>
                 </router-link>
                 <router-link to="/channels/creative">
-                    <v-card dark class="mt-1" :ripple="true" :hover="true" tile>
+                    <v-card dark class="mt-1 v-btn" color="#505050" :ripple="true" :hover="true" tile>
                         <div class="d-flex flex-no-wrap justify-space-between">
                             <div>
                                 <v-card-title class="headline">Креатив</v-card-title>
@@ -27,7 +27,7 @@
                     </v-card>
                 </router-link>
                 <router-link to="/channels/podcasts">
-                    <v-card dark class="mt-1" :ripple="true" :hover="true"  tile>
+                    <v-card dark class="mt-1 v-btn" color="#505050" :ripple="true" :hover="true"  tile>
                         <div class="d-flex flex-no-wrap justify-space-between">
                             <div>
                                 <v-card-title class="headline">Подкасты</v-card-title>
@@ -39,7 +39,7 @@
                     </v-card>
                 </router-link>
                 <router-link to="/channels/science">
-                    <v-card dark class="mt-1" :ripple="true" :hover="true" tile>
+                    <v-card dark class="mt-1 v-btn" color="#505050" :ripple="true" :hover="true" tile>
                         <div class="d-flex flex-no-wrap justify-space-between">
                             <div>
                                 <v-card-title class="headline">Наука и обучение</v-card-title>
@@ -51,7 +51,7 @@
                     </v-card>
                 </router-link>
                 <router-link to="/channels/irl">
-                    <v-card dark class="mt-1" :ripple="true" :hover="true" tile>
+                    <v-card dark class="mt-1 v-btn" color="#505050" :ripple="true" :hover="true" tile>
                         <div class="d-flex flex-no-wrap justify-space-between">
                             <div>
                                 <v-card-title class="headline">IRL</v-card-title>
@@ -63,7 +63,7 @@
                     </v-card>
                 </router-link>
                 <router-link to="/channels/etc">
-                    <v-card dark class="mt-1" :ripple="true" :hover="true" tile>
+                    <v-card dark class="mt-1 v-btn" color="#505050" :ripple="true" :hover="true" tile>
                         <div class="d-flex flex-no-wrap justify-space-between">
                             <div>
                                 <v-card-title class="headline">ETC</v-card-title>

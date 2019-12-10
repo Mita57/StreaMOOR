@@ -37,7 +37,7 @@ const router = new Router({
     }
       ,
     {
-      path: '/channel',
+      path: '/channel/:id/:user',
       name: 'Channel',
       component: Channel
     },

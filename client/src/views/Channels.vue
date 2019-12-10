@@ -4,7 +4,7 @@
         <v-layout wrap justify-space-around>
             <v-flex v-for="chanel in channels">
                 <router-link :to="chanel[0]">
-                    <v-card class="mx-auto" max-width="344" outlined tile>
+                    <v-card class="mx-auto v-btn" color="#505050"   max-width="344" outlined tile>
                         <v-list-item three-line>
                             <v-list-item-content>
                                 <div class="overline mb-4">{{chanel[0]}}</div>

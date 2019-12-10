@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from models import SQLModel
 from models.subscriptions import Subsctiption
 from models.users import User
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import datetime
 
 app = Flask(__name__)
@@ -30,6 +30,7 @@ async def login():
         return jsonify(style='color:red', info='Неправильное имя пользователя или пароль', flag=False)
 
 
+@cross_origin()
 @app.route('/register', methods=['POST'])
 def register():
     """
@@ -39,13 +40,13 @@ def register():
         JSON with the result
     """
     post_data = request.get_json()
-    if SQLModel.get_by_attrs('email, password', 'email', (post_data.get('email'))):
+    if SQLModel.get_by_attrs('email', 'email', (post_data.get('email'))):
         return jsonify(info='Данный пользователь уже зарегестрирован')
     else:
         date = datetime.date.day + '/' + datetime.date.month + '/' + datetime.date.year
         SQLModel.insert((post_data.get('nickname'), post_data.get('email'), post_data.get('password'), None,
                          date, None, post_data.get('birthDate'), 'user', False))
-        return jsonify(info='Регистрация прошла успешно')
+        return jsonify(info='good')
 
 
 @app.route('/unsubscribe', methods=['POST'])
