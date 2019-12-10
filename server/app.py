@@ -2,16 +2,11 @@ from flask import Flask, jsonify, request
 from models import SQLModel
 from models.subscriptions import Subsctiption
 from models.users import User
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 import datetime
 
 app = Flask(__name__)
 CORS(app)
-
-
-@app.route('/')
-def index():
-    pass
 
 
 @app.route('/login', methods=['POST'])
@@ -30,7 +25,6 @@ async def login():
         return jsonify(style='color:red', info='Неправильное имя пользователя или пароль', flag=False)
 
 
-@cross_origin()
 @app.route('/register', methods=['POST'])
 def register():
     """
