@@ -8,7 +8,6 @@ class AbstractClassError(Exception):
 
 class SQLModel:
     _DATABASE = None
-    _TABLE = None
     _USER = None
     _PASSWORD = None
     _HOST = None
@@ -25,7 +24,7 @@ class SQLModel:
         Returns:
         Connection to postgres
         """
-        return psycopg2.connect(database=cls._DATABASE, table=cls._TABLE, user=cls._USER,
+        return psycopg2.connect(database=cls._DATABASE,  user=cls._USER,
                                 password=cls._PASSWORD, host=cls._HOST, port=cls._PORT)
 
     @classmethod
@@ -61,6 +60,7 @@ class SQLModel:
             with conn.cursor() as cursor:
                 sql_insert_query = """INSERT INTO %s VALUES (%s) """
                 cursor.execute(sql_insert_query, cls._TABLE, values_query)
+                cur.commit()
 
     @classmethod
     def get_by_attrs(cls, cols, attr_cols, attr_values, group_by=None, order_by=None):
