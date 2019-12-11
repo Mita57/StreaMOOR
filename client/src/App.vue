@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <!-- Header -->
-        <v-app-bar app class="blue white--text" absolute short fixed clipped-right>
+        <v-app-bar app class="blue white--text" absolute short fixed clipped-right :key="header">
             <router-link to="/">
                 <img class="mr-3 mt-1" :src="require('./assets/MOOR.png')" height="50"/>
             </router-link>
@@ -30,8 +30,8 @@
                         </v-list>
 
                         <v-divider></v-divider>
-
                         <v-list>
+                            <v-list-item v-if="auth_result!=''">{{auth_result}}</v-list-item>
                             <v-list-item>
                                 <v-text-field type="text" id="email" v-model="email"
                                               placeholder="Адрес электронной почты"><br>
@@ -44,10 +44,10 @@
                         </v-list>
 
                         <v-card-actions>
-                            <v-btn text to="/register" @click="menu=false">Зарегестрироваться</v-btn>
+                            <v-btn text to="/register" @click="menu=false">Зарегистрироваться</v-btn>
                             <v-spacer></v-spacer>
                             <v-btn text @click="menu=false">Отмена</v-btn>
-                            <v-btn color="primary" text @click="menu=false, loginValidation()">Вход</v-btn>
+                            <v-btn color="primary" text @click="menu=false, loginValidation()">Войти</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-menu>
@@ -88,11 +88,21 @@
             return {
                 user: 'Войти',
                 channels: [],
+                auth_result:''
+            }
+        },
+        mounted(){
+          localStorage.user = 'Войти';
+        },
+        watch:{
+            user(value){
+                localStorage.user = value;
             }
         },
         methods: {
-            loginValidation() {
+            loginValidation: function() {
                 //input validation
+                const aw = this;
                 let passwordFlag = false;
                 let emailFlag = false;
                 if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById('email').value)) {
@@ -112,31 +122,36 @@
 
 
                 if (passwordFlag && emailFlag) {
-                    login(document.getElementById('email').value, document.getElementById('password'));
+                    login(document.getElementById('email').value, document.getElementById('password').value);
                 }
 
-                async function login(email, pwrd) {
-                    let formData = new FormData();
-                    formData.set('email', email);
-                    formData.set('password', pwrd);
-                    await axios({
-                        headers:{
-                            'Access-Control-Allow-Origin': '*'
+                function login(email, pwrd) {
+                    axios({
+                        headers: {
+                            'Access-Control-Allow-Origin': '*',
+                            'Content-Type': 'application/json',
                         },
                         method: 'post',
                         url: 'http://localhost:5000/login',
-                        data: formData
+                        data: {
+                            email: email,
+                            password: pwrd
+                        },
                     }).then(function (response) {
-                        this.nickname = response.data.nickname;
+                        console.log(aw);
+                        if(response.data.result == 'fail'){
+                            aw.auth_result = 'Неправильное имя пользователя или пароль';
+                        }
+                        localStorage.user = response.data.result;
+                        aw.user = response.data.result;
                     })
                         .catch(function (response) {
                             //handle error
                             console.log(response);
-                            alert('Kernel panic: not sycning')
                         })
                 }
 
-            },
+            }
         }
     };
 </script>

@@ -14,19 +14,22 @@ CORS(app)
 
 
 @app.route('/login', methods=['POST'])
-async def login():
+def login():
     """
     Gets the data from the login form and authorizes the input
 
     Returns: JSON with auth result info
     """
-    post_data = await request.get_json()
-    print('cock')
-    user = SQLModel.get_by_attrs('email, password', 'email', (post_data.get('email')))
-    if post_data.get('pwrd') == user[0][1]:
-        return jsonify(style='color:lightgreen', info='Вход выполнен', flag=True)
+    data = request.get_json()
+    email = data.get('email')
+    password = data.get('password')
+    user = User.get_by_attrs(('nickname', 'password'), 'email', email)
+    user_pw = user[0][1]
+    user_nick = user[0][0]
+    if password == user_pw:
+        return jsonify(result=user_nick)
     else:
-        return jsonify(style='color:red', info='Неправильное имя пользователя или пароль', flag=False)
+        return jsonify(result='fail')
 
 
 @app.route('/register', methods=['POST'])
@@ -40,9 +43,14 @@ def register():
     post_data = request.get_json()
     print(post_data)
     today = str(datetime.datetime.now().year) + '-' + str(datetime.datetime.now().month) + '-' + str(datetime.datetime.now().day)
-    User.insert((post_data.get('email'), post_data.get('nickname'), None, today, 0, 'sas', false, true, 'gaming', False))
-    return jsonify(result='good')
-
+    email = post_data.get('email')
+    password = post_data.get('password')
+    nickname = post_data.get('nickname')
+    try:
+        User.insert((email, nickname, password, 'null', today, 0, 'sas', False, True, 'gaming', False))
+        return jsonify(result='good')
+    except:
+        return jsonify(result='bad')
 
 
 @app.route('/unsubscribe', methods=['POST'])
@@ -71,7 +79,7 @@ def get_channels():
         JSON with the channels
     """
     hub = request.args.get('hub')
-    users = User.get_by_attrs(cols=('nickname', 'curr_hub', 'description'), attr_cols='curr_hub', attr_values=hub, order_by='subs')
+    users = User.get_by_attrs(cols=('nickname', 'curr_hub', 'description',), attr_cols=('curr_hub'), attr_values=(hub), order_by='subs DESC')
     print(jsonify(users))
     return jsonify(users)
 

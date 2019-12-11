@@ -6,8 +6,6 @@ class AbstractClassError(Exception):
     pass
 
 
-
-
 class SQLModel:
     _TABLE = None
     _DATABASE = None
@@ -50,7 +48,7 @@ class SQLModel:
     def normalize_cols(cls, cols):
         new_cols = ''
         for x in cols:
-            new_cols += x + ', '
+            new_cols += str(x) + ', '
         new_cols = new_cols[0:-2]
         return new_cols
 
@@ -61,14 +59,11 @@ class SQLModel:
             args:
                 values: the values to be inserted into the database
         """
-        values_query = ''
-        for X in values:
-            values_query += X + ','
         with closing(psycopg2.connect(database='streamoor', user='postgres', password='3395925000',
                                       host='127.0.0.1', port='5432')) as conn:
             with conn.cursor() as cursor:
-                sql_insert_query = """INSERT INTO {} VALUES (%s) """.format(cls._TABLE)
-                cursor.execute(sql_insert_query, values_query)
+                sql_insert_query = """INSERT INTO {} VALUES {} """.format(cls._TABLE, values)
+                cursor.execute(sql_insert_query)
                 conn.commit()
 
     @classmethod

@@ -2,18 +2,19 @@
     <div class="sign-up mt-4">
         <h3>Давайте создадим новый аккаунт!</h3>
         <v-text-field type="text" v-model="nickname" id="nicknameReg" placeholder="Никнейм"><br></v-text-field>
-        <v-text-field type="text" v-model="email" id="emailReg" placeholder="Адрес электронной почты"><br></v-text-field>
+        <v-text-field type="text" v-model="email" id="emailReg" placeholder="Адрес электронной почты"><br>
+        </v-text-field>
         <v-text-field type="password" v-model="password" id="passwordReg" placeholder="Пароль"><br></v-text-field>
         <v-text-field type="password" v-model="passwordconf" id="passwordConfReg" placeholder="Повторите пароль"><br>
         </v-text-field>
         <v-btn x-large tile dark class="blue mt-4 sas" @click="signUpValidation()">Создать аккаунт</v-btn>
-        <div class="mt-3">{{result}}</div>
+        <div class="mt-5">{{result}}</div>
     </div>
 </template>
 
 <script>
     import axios from 'axios';
-
+    import App from '../App.vue';
     export default {
         name: "Register",
         data() {
@@ -28,6 +29,7 @@
         },
         methods: {
             signUpValidation() {
+                var vm = this;
                 let nicknameFlag = false;
                 let emailFlag = false;
                 let passwordFlag = false;
@@ -68,23 +70,25 @@
                         method: 'post',
                         url: 'http://localhost:5000/register',
                         data: {
-                            nickname:nick,
-                            email:email,
-                            password:pwrd
+                            nickname: nick,
+                            email: email,
+                            password: pwrd
                         },
                     }).then(function (response) {
                         console.log(response);
                         console.log(response.data.result);
-                        if (response.data.result != 'good') {
-                            this.result = 'Данный пользователь уже зарегестрирован'
-                        } else {
-                            app.user = nick;
+                        if (response.data.result == 'good') {
+                            localStorage.user = nick;
+                            vm.result = '';
+                            //TODO: render the username as the registration completes
+                        }
+                        else {
+                            vm.result = 'Данный пользователь уже зарегестрирован :c'
                         }
                     })
                         .catch(function (response) {
                             //handle error
                             console.log(response);
-                            alert('Kernel panic: not sycning')
                         })
 
                 }
@@ -117,7 +121,8 @@
         margin-top: 20px;
         font-size: 11px;
     }
-    .sas{
-        width:250px;
+
+    .sas {
+        width: 250px;
     }
 </style>
