@@ -12,6 +12,7 @@
                 <v-btn text class=" white--text" to="/hubs">Хабы</v-btn>
                 <v-btn text class=" white--text" to="/info">Инофрмация</v-btn>
                 <v-btn text class=" white--text" to="/account">Помогите</v-btn>
+                <v-text-field type="text" id="search" class="mt-3 ml-10 primary"  placeholder="Поиск"><br></v-text-field>
             </v-toolbar-items>
             <v-spacer></v-spacer>
             <v-toolbar-items>
@@ -81,7 +82,6 @@
 
 <script>
     import axios from 'axios';
-
     export default {
         name: 'App',
         data() {
@@ -120,6 +120,9 @@
                     formData.set('email', email);
                     formData.set('password', pwrd);
                     await axios({
+                        headers:{
+                            'Access-Control-Allow-Origin': '*'
+                        },
                         method: 'post',
                         url: 'http://localhost:5000/login',
                         data: formData
@@ -142,5 +145,8 @@
     a {
         text-decoration: none;
         color: white;
+    }
+    #search{
+        width: 500px;
     }
 </style>

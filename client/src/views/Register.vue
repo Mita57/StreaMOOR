@@ -59,12 +59,7 @@
                     signUp(document.getElementById('nicknameReg').value, document.getElementById('emailReg').value, document.getElementById('passwordReg').value);
                 }
 
-                async function signUp(nick, emaii, pwrd) {
-                    let bodyFormData = new FormData();
-                    bodyFormData.set('nickname', nick);
-                    bodyFormData.set('email', emaii);
-                    bodyFormData.set('password', pwrd);
-                    console.log(bodyFormData);
+                async function signUp(nick, email, pwrd) {
                     await axios({
                         headers: {
                             'Access-Control-Allow-Origin': '*',
@@ -72,14 +67,18 @@
                         },
                         method: 'post',
                         url: 'http://localhost:5000/register',
-                        data: bodyFormData,
+                        data: {
+                            nickname:nick,
+                            email:email,
+                            password:pwrd
+                        },
                     }).then(function (response) {
                         console.log(response);
-                        if (response.data.info != 'good') {
+                        console.log(response.data.result);
+                        if (response.data.result != 'good') {
                             this.result = 'Данный пользователь уже зарегестрирован'
                         } else {
-                            this.user = nick;
-                            this.router.push('/hubs');
+                            app.user = nick;
                         }
                     })
                         .catch(function (response) {

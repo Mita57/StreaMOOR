@@ -4,6 +4,10 @@ from models.subscriptions import Subsctiption
 from models.users import User
 from flask_cors import CORS
 import datetime
+from aiohttp import web
+
+# from aiortc import RTCPeerConnection, RTCSessionDescription
+# from aiortc.contrib.media import MediaPlayer
 
 app = Flask(__name__)
 CORS(app)
@@ -34,13 +38,11 @@ def register():
         JSON with the result
     """
     post_data = request.get_json()
-    if SQLModel.get_by_attrs('email', 'email', (post_data.get('email'))):
-        return jsonify(info='Данный пользователь уже зарегестрирован')
-    else:
-        date = datetime.date.day + '/' + datetime.date.month + '/' + datetime.date.year
-        SQLModel.insert((post_data.get('nickname'), post_data.get('email'), post_data.get('password'), None,
-                         date, None, post_data.get('birthDate'), 'user', False))
-        return jsonify(info='good')
+    print(post_data)
+    today = str(datetime.datetime.now().year) + '-' + str(datetime.datetime.now().month) + '-' + str(datetime.datetime.now().day)
+    User.insert((post_data.get('email'), post_data.get('nickname'), None, today, 0, 'sas', false, true, 'gaming', False))
+    return jsonify(result='good')
+
 
 
 @app.route('/unsubscribe', methods=['POST'])
