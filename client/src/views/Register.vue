@@ -29,7 +29,7 @@
         },
         methods: {
             signUpValidation() {
-                var vm = this;
+                const aw = this;
                 let nicknameFlag = false;
                 let emailFlag = false;
                 let passwordFlag = false;
@@ -79,11 +79,14 @@
                         console.log(response.data.result);
                         if (response.data.result == 'good') {
                             localStorage.user = nick;
-                            vm.result = '';
+                            aw.result = '';
+                            aw.$parent.user = nick;
+                            document.getElementById('cock').innerText = nick;
+                            console.log(aw.$parent.user);
                             //TODO: render the username as the registration completes
                         }
                         else {
-                            vm.result = 'Данный пользователь уже зарегестрирован :c'
+                            aw.result = 'Данный пользователь уже зарегестрирован :c'
                         }
                     })
                         .catch(function (response) {

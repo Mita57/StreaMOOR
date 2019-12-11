@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <!-- Header -->
-        <v-app-bar app class="blue white--text" absolute short fixed clipped-right :key="header">
+        <v-app-bar app class="blue white--text" absolute short fixed clipped-right>
             <router-link to="/">
                 <img class="mr-3 mt-1" :src="require('./assets/MOOR.png')" height="50"/>
             </router-link>
@@ -12,10 +12,11 @@
                 <v-btn text class=" white--text" to="/hubs">Хабы</v-btn>
                 <v-btn text class=" white--text" to="/info">Инофрмация</v-btn>
                 <v-btn text class=" white--text" to="/account">Помогите</v-btn>
-                <v-text-field type="text" id="search" class="mt-3 ml-10 primary"  placeholder="Поиск"><br></v-text-field>
+                <v-text-field type="text" id="search" class="mt-3 ml-10 primary" placeholder="Поиск"><br></v-text-field>
             </v-toolbar-items>
             <v-spacer></v-spacer>
-            <v-toolbar-items>
+
+            <v-toolbar-items v-if="user='Войти'">
                 <v-menu :close-on-content-click='false'>
                     <template v-slot:activator="{ on }">
                         <v-btn text class="white--text" v-on="on" id="cock">{{user}}</v-btn>
@@ -28,11 +29,11 @@
                                 </v-list-item-content>
                             </v-list-item>
                         </v-list>
-
                         <v-divider></v-divider>
                         <v-list>
                             <v-list-item v-if="auth_result!=''">{{auth_result}}</v-list-item>
                             <v-list-item>
+                                <v-text-field type="text" id="email" v-model="email"
                                 <v-text-field type="text" id="email" v-model="email"
                                               placeholder="Адрес электронной почты"><br>
                                 </v-text-field>
@@ -55,7 +56,7 @@
         </v-app-bar>
 
         <!-- Sidebar -->
-        <v-navigation-drawer app>
+        <v-navigation-drawer app id="side">
             <v-list two-line subheader>
                 <v-subheader inset style="height: 56px">Сейчас в эфире:</v-subheader>
                 <v-divider></v-divider>
@@ -76,31 +77,31 @@
         <v-content>
             <router-view/>
         </v-content>
-
     </v-app>
 </template>
 
 <script>
     import axios from 'axios';
+
     export default {
         name: 'App',
         data() {
             return {
                 user: 'Войти',
                 channels: [],
-                auth_result:''
+                auth_result: ''
             }
         },
-        mounted(){
-          localStorage.user = 'Войти';
+        mounted() {
+            localStorage.user = 'Войыввыти';
         },
-        watch:{
-            user(value){
+        watch: {
+            user(value) {
                 localStorage.user = value;
             }
         },
         methods: {
-            loginValidation: function() {
+            loginValidation: function () {
                 //input validation
                 const aw = this;
                 let passwordFlag = false;
@@ -138,8 +139,7 @@
                             password: pwrd
                         },
                     }).then(function (response) {
-                        console.log(aw);
-                        if(response.data.result == 'fail'){
+                        if (response.data.result == 'fail') {
                             aw.auth_result = 'Неправильное имя пользователя или пароль';
                         }
                         localStorage.user = response.data.result;
@@ -161,7 +161,13 @@
         text-decoration: none;
         color: white;
     }
-    #search{
+
+    #search {
         width: 500px;
+    }
+
+    #side::-webkit-scrollbar {
+        width: 6px;
+        background-color: #F5F5F5;
     }
 </style>

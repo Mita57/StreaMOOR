@@ -91,7 +91,11 @@ def get_channel():
     Returns:
         JSON with channel info
     """
-    pass
+    nick = request.args.get('nickname')
+    print(nick)
+    stuff = User.get_by_attrs(cols=('nickname', 'subs', 'description', 'curr_hub'), attr_cols='nickname', attr_values=nick)
+    print(stuff)
+    return jsonify(stuff)
 
 
 

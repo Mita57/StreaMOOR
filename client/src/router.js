@@ -31,13 +31,13 @@ const router = new Router({
       component:Register
     },
     {
-      path: '/channels/:id',
+      path: '/hubs/:id',
       name:'Channels',
       component:Channels
     }
       ,
     {
-      path: '/channel/:id/:user',
+      path: '/hubs/:id/:user',
       name: 'Channel',
       component: Channel
     },

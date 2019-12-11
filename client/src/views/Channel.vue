@@ -71,20 +71,29 @@
         },
         methods: {
             async getInfo(){
-                let name = capitalize(window.location.href.split('/')[5]);
-                await axios.get('localhost:5000/channel', {name: name}).then((res) => {
-                    this.nickname = res.data.nickname;
-                    this.subscibers = res.data.subs;
-                    this.desc = res.data.desc;
-                    this.hub = res.data.hub;
-                    this.viewers = res.data.viewers;
-                })
-
+                const rw = this;
+                const capitalize = (s) => {
+                    if (typeof s !== 'string') return '';
+                    return s.charAt(0).toUpperCase() + s.slice(1);
+                }
+                let nick = (window.location.href.split('/')[5]);
+                await axios.get('http://localhost:5000/channel?nickname=' + nick)
+                    .then(function (res) {
+                        console.log(res);
+                        rw.nickname = res.data[0][0];
+                        rw.subscibers = res.data[0][1];
+                        rw.desc = res.data[0][2];
+                        rw.hub = capitalize(res.data[0][3]);
+                    })
+                    .catch(function (res) {
+                        //handle error
+                        console.log(res);
+                    })
             }
         },
-        created() {
+        mounted(){
             this.getInfo();
-        }
+        },
     }
 
 </script>
