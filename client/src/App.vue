@@ -46,8 +46,7 @@
                             <v-btn text to="/register" @click="menu=false">Зарегестрироваться</v-btn>
                             <v-spacer></v-spacer>
                             <v-btn text @click="menu=false">Отмена</v-btn>
-                            <v-btn color="primary" text @click="menu=false, loginValidation()"
-                            ">Вход</v-btn>
+                            <v-btn color="primary" text @click="menu=false, loginValidation()">Вход</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-menu>
@@ -103,7 +102,7 @@
                     document.getElementById('email').style.backgroundColor = 'darkred';
                     emailFlag = false;
                 }
-                if (document.getElementById('password').value.length > 4) {
+                if (document.getElementById('password').value.length >= 4) {
                     passwordFlag = true;
                     document.getElementById('password').style.backgroundColor = '#424242';
                 } else {
@@ -113,16 +112,16 @@
 
 
                 if (passwordFlag && emailFlag) {
-                    login();
+                    login(document.getElementById('email').value, document.getElementById('password'));
                 }
 
-                async function login() {
+                async function login(email, pwrd) {
                     let formData = new FormData();
-                    formData.set('email', document.getElementById('email').value);
-                    formData.set('password', document.getElementById('pasword').value);
+                    formData.set('email', email);
+                    formData.set('password', pwrd);
                     await axios({
                         method: 'post',
-                        url: 'localhost:5000/login',
+                        url: 'http://localhost:5000/login',
                         data: formData
                     }).then(function (response) {
                         this.nickname = response.data.nickname;

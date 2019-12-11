@@ -71,7 +71,7 @@
                             'Content-Type': 'application/json',
                         },
                         method: 'post',
-                        url: 'localhost:5000/register',
+                        url: 'http://localhost:5000/register',
                         data: bodyFormData,
                     }).then(function (response) {
                         console.log(response);
