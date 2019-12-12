@@ -18,7 +18,7 @@
             </v-toolbar-items>
             <v-spacer></v-spacer>
 
-            <v-toolbar-items v-if="user='Войти'">
+            <v-toolbar-items>
                 <v-menu :close-on-content-click='false'>
                     <template v-slot:activator="{ on }">
                         <v-btn text class="white--text" v-on="on" id="cock">{{user}}</v-btn>
@@ -92,14 +92,6 @@
                 user: 'Войти',
                 channels: [],
                 auth_result: ''
-            }
-        },
-        mounted() {
-            localStorage.user = 'Войыввыти';
-        },
-        watch: {
-            user(value) {
-                localStorage.user = value;
             }
         },
         methods: {

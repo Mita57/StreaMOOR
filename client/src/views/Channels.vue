@@ -4,13 +4,14 @@
         <v-layout wrap justify-space-around>
             <v-flex v-for="chanel in channels">
                 <router-link :to="getUrl(chanel[0])">
-                    <v-card class="mx-auto v-btn" color="#505050" max-width="344" outlined tile>
+                    <v-card class="mx-auto" max-width="344" outlined>
                         <v-list-item three-line>
                             <v-list-item-content>
-                                <div class="overline mb-4">{{chanel[0]}}</div>
-                                <v-list-item-title class="headline mb-1">{{chanel[2]}}</v-list-item-title>
+                                <div class="overline mb-4"></div>
+                                <v-list-item-title class="headline mb-1">{{chanel[0]}}</v-list-item-title>
+                                <v-list-item-subtitle>{{chanel[2]}}</v-list-item-subtitle>
                             </v-list-item-content>
-                            <v-list-item-avatar tile size="80" color="grey"></v-list-item-avatar>
+                            <v-list-item-avatar tile size="80" color="grey"><img src="../assets/Igor.png"></v-list-item-avatar>
                         </v-list-item>
                     </v-card>
                 </router-link>
