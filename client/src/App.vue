@@ -10,7 +10,7 @@
             </v-toolbar-title>
             <v-toolbar-items class="ml-4">
                 <v-btn text class=" white--text" to="/hubs">Хабы</v-btn>
-                <v-btn text class=" white--text" to="/info">Инофрмация</v-btn>
+                <v-btn text class=" white--text" to="/info">Информация</v-btn>
                 <v-btn text class=" white--text" to="/account">Помогите</v-btn>
                 <v-text-field type="text" id="search" class="mt-2 ml-10 primary" flat dense solo light placeholder="Поиск"
                               :append-icon="'mdi-magnify'" @click:append="search()">
@@ -63,16 +63,14 @@
                 <v-subheader inset style="height: 56px">Сейчас в эфире:</v-subheader>
                 <v-divider></v-divider>
                 <v-list-item v-for="i in 20">
-                    <router-link to="/channel">
                         <v-list-item-avatar class="sas" tile>
-                            <v-img src="./assets/Igor.png" class=""></v-img>
+                            <v-img src="./assets/moorava.jpg"></v-img>
                         </v-list-item-avatar>
                         <v-list-item-content>
-                            <v-list-item-title>Игорь</v-list-item-title>
-                            <v-list-item-subtitle>Учимся пользоваться гитом</v-list-item-subtitle>
-                            <v-list-item-subtitle>Креатив</v-list-item-subtitle>
+                            <v-list-item-title>MoorPK</v-list-item-title>
+                            <v-list-item-subtitle>Майн форек гетленч</v-list-item-subtitle>
+                            <v-list-item-subtitle>Подкасты</v-list-item-subtitle>
                         </v-list-item-content>
-                    </router-link>
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
@@ -84,6 +82,7 @@
 
 <script>
     import axios from 'axios';
+    import router from "./router";
 
     export default {
         name: 'App',
@@ -147,7 +146,9 @@
 
             },
             search(){
-                alert("I'm working!");
+                if(document.getElementById('search').value.length > 0) {
+                    router.push('search/' + document.getElementById('search').value);
+                }
             }
         }
     };
@@ -163,8 +164,12 @@
         width: 500px;
     }
 
-    #side::-webkit-scrollbar {
+    .v-navigation-drawer__content::-webkit-scrollbar {
         width: 6px;
         background-color: #F5F5F5;
+    }
+    .v-navigation-drawer__content::-webkit-scrollbar-thumb {
+        box-shadow: inset 0 0 5px grey;
+        background: dodgerblue;
     }
 </style>
