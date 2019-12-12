@@ -34,6 +34,7 @@
             </div>
         </v-navigation-drawer>
         <v-responsive :aspect-ratio="16/9" class=" ma-8 mt-2 white">
+            <img src="http://localhost:5000/video_feed" id="stream">
         </v-responsive>
         <v-container fluid>
             <v-layout wrap  class="ml-5 mt-n8">
@@ -107,4 +108,9 @@
     bottom: 0px;
     width: 100%;
  }
+    #stream{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+    }
 </style>

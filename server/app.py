@@ -1,13 +1,11 @@
-from flask import Flask, jsonify, request
-from models import SQLModel
+from flask import Flask, jsonify, request, Response
 from models.subscriptions import Subsctiption
 from models.users import User
 from flask_cors import CORS
 import datetime
-from aiohttp import web
+from camera import camera_opencv
 
-# from aiortc import RTCPeerConnection, RTCSessionDescription
-# from aiortc.contrib.media import MediaPlayer
+
 
 app = Flask(__name__)
 CORS(app)
@@ -96,6 +94,24 @@ def get_channel():
     stuff = User.get_by_attrs(cols=('nickname', 'subs', 'description', 'curr_hub'), attr_cols='nickname', attr_values=nick)
     print(stuff)
     return jsonify(stuff)
+
+
+def gen(camera):
+    """Video streaming generator function."""
+    while True:
+        frame = camera.get_frame()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+
+@app.route('/video_feed')
+def video_feed():
+    """
+    Generates the video image from the webcam and sends it to the channel
+
+    """
+    return Response(gen(camera_opencv.Camera()),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
 
