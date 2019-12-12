@@ -36,7 +36,7 @@ def register():
     Inserts the information about new user unto the database
 
     Returns:
-        JSON with the result
+        Inserts the information about new user unto the database
     """
     post_data = request.get_json()
     print(post_data)
@@ -108,10 +108,23 @@ def gen(camera):
 def video_feed():
     """
     Generates the video image from the webcam and sends it to the channel
+    Returns:
+        Next frame that will be put in the <img> tag
 
     """
     return Response(gen(camera_opencv.Camera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
+
+
+@app.route('/search')
+def search():
+    """
+    Searches the DB for anything that is similar to the search input
+    """
+    needle = request.args.get('input')
+    users = User.get_by_attrs(cols=('nickname', 'curr_hub', 'description',), attr_cols=('nickname'), attr_values=(needle), order_by='subs DESC')
+    users.extend(User.get_by_attrs(cols=('nickname', 'curr_hub', 'description',), attr_cols=('desc'), attr_values=(needle), order_by='subs DESC'))
+    return jsonify(users)
 
 
 
