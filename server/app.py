@@ -22,11 +22,15 @@ def login():
     email = data.get('email')
     password = data.get('password')
     user = User.get_by_attrs(('nickname', 'password'), 'email', email)
-    user_pw = user[0][1]
-    user_nick = user[0][0]
-    if password == user_pw:
-        return jsonify(result=user_nick)
-    else:
+    print(user)
+    try:
+        user_pw = user[0][1]
+        user_nick = user[0][0]
+        if password == user_pw:
+            return jsonify(result=user_nick)
+        else:
+            return jsonify(result='fail')
+    except:
         return jsonify(result='fail')
 
 

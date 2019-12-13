@@ -135,8 +135,10 @@
                         if (response.data.result == 'fail') {
                             aw.auth_result = 'Неправильное имя пользователя или пароль';
                         }
-                        localStorage.user = response.data.result;
-                        aw.user = response.data.result;
+                        else {
+                            localStorage.user = response.data.result;
+                            aw.user = response.data.result;
+                        }
                     })
                         .catch(function (response) {
                             //handle error
