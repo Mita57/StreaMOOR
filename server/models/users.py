@@ -6,7 +6,7 @@ class User(BasicModel):
     _DATABASE = 'streamoor'
     _TABLE = 'users'
     _USER = 'postgres'
-    _PASSWORD = '3395925000'
+    _PASSWORD = 'MOOR'
     _HOST = '127.0.0.1'
     _PORT = '5432'
     nickname: str
