@@ -59,7 +59,7 @@ class SQLModel:
             args:
                 values: the values to be inserted into the database
         """
-        with closing(psycopg2.connect(database='streamoor', user='postgres', password='3395925000',
+        with closing(psycopg2.connect(database='streamoor', user='postgres', password='postgres',
                                       host='127.0.0.1', port='5432')) as conn:
             with conn.cursor() as cursor:
                 sql_insert_query = """INSERT INTO {} VALUES {} """.format(cls._TABLE, values)
@@ -80,7 +80,7 @@ class SQLModel:
                 query result as a dictionary
         """
         new_cols = cls.normalize_cols(cols)
-        with closing(psycopg2.connect(database='streamoor', user='postgres', password='3395925000',
+        with closing(psycopg2.connect(database='streamoor', user='postgres', password='postgres',
                                       host='127.0.0.1', port='5432')) as conn:
             with conn.cursor() as cursor:
                 if group_by is None and order_by is None:
@@ -116,7 +116,7 @@ class SQLModel:
                 attr_values: values that will be used in the WHERE statement according to the attr_cols : list
         """
         new_cols = cls.normalize_cols(columns)
-        with closing(psycopg2.connect(database='streamoor', user='postgres', password='3395925000',
+        with closing(psycopg2.connect(database='streamoor', user='postgres', password='postgres',
                                       host='127.0.0.1', port='5432')) as conn:
             with conn.cursor() as cursor:
                 sql_update_query = """UPDATE {} SET {}=%s WHERE {}=%s""".format(cls._TABLE, new_cols, attr_cols)
@@ -130,7 +130,7 @@ class SQLModel:
                 attr_cols: columns that will be used in the WHERE statement : list
                 attr_values: values that will be used in the WHERE statement according to the attr_cols : list
         """
-        with closing(psycopg2.connect(database='streamoor', user='postgres', password='3395925000',
+        with closing(psycopg2.connect(database='streamoor', user='postgres', password='postgres',
                                       host='127.0.0.1', port='5432')) as conn:
             with conn.cursor() as cursor:
                 sql_delete_query = """DELETE FROM {} where {}=%s""".format(cls._TABLE, attr_cols)
