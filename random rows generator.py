@@ -10,6 +10,7 @@ curr_hub = ('gaming', 'creative', 'science', 'etc', 'irl', 'podcasts')
 words = []
 
 # a comment
+# this is a comment that has been added locally
 
 with open('asf.txt') as f:
     content = f.readlines()
