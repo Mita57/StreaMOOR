@@ -9,6 +9,8 @@ banned = (True, False, False, False)
 curr_hub = ('gaming', 'creative', 'science', 'etc', 'irl', 'podcasts')
 words = []
 
+# a comment
+
 with open('asf.txt') as f:
     content = f.readlines()
 for x in content:
